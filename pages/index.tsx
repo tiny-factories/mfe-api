@@ -1,53 +1,21 @@
-import React from "react";
-import { GetServerSideProps } from "next";
-import Layout from "../components/Layout";
-import Post, { PostProps } from "../components/Post";
-import { makeSerializable } from "../lib/util";
-import prisma from "../lib/prisma";
+import type { NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
 
-type Props = {
-  feed: PostProps[];
-};
-
-const Blog: React.FC<Props> = (props) => {
+const Home: NextPage = () => {
   return (
-    <Layout>
-      <div className="page">
-        <h1>My Blog</h1>
-        <main>
-          {props.feed.map((post) => (
-            <div key={post.id} className="post">
-              <Post post={post} />
-            </div>
-          ))}
-        </main>
-      </div>
-      <style jsx>{`
-        .post {
-          background: white;
-          transition: box-shadow 0.1s ease-in;
-        }
-
-        .post:hover {
-          box-shadow: 1px 1px 3px #aaa;
-        }
-
-        .post + .post {
-          margin-top: 2rem;
-        }
-      `}</style>
-    </Layout>
+    <div className="flex min-h-screen ">
+      <Head>
+        <title>API Made for Earth</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 ">
+        <h1 className="text-6xl font-bold">
+          API Made for <span className="text-[#007d00]">Earth</span>
+        </h1>
+      </main>
+    </div>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const feed = await prisma.data.findMany({
-    where: { published: true },
-    include: { author: true },
-  });
-  return {
-    props: { feed: makeSerializable(feed) },
-  };
-};
-
-export default Blog;
+export default Home;
