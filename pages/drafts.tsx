@@ -1,13 +1,13 @@
-import React from "react"
-import { GetServerSideProps } from "next"
-import Layout from "../components/Layout"
-import Post, { PostProps } from "../components/Post"
-import prisma from '../lib/prisma'
-import { makeSerializable } from '../lib/util'
+import React from "react";
+import { GetServerSideProps } from "next";
+import Layout from "../components/Layout";
+import Post, { PostProps } from "../components/Post";
+import prisma from "../lib/prisma";
+import { makeSerializable } from "../lib/util";
 
 type Props = {
-  drafts: PostProps[]
-}
+  drafts: PostProps[];
+};
 
 const Drafts: React.FC<Props> = (props) => {
   return (
@@ -37,17 +37,17 @@ const Drafts: React.FC<Props> = (props) => {
         }
       `}</style>
     </Layout>
-  )
-}
+  );
+};
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const drafts = await prisma.post.findMany({
+  const drafts = await prisma.data.findMany({
     where: { published: false },
     include: { author: true },
-  })
+  });
   return {
     props: { drafts: makeSerializable(drafts) },
-  }
-}
+  };
+};
 
-export default Drafts
+export default Drafts;

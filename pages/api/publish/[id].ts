@@ -1,12 +1,15 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import prisma from '../../../lib/prisma'
+import type { NextApiRequest, NextApiResponse } from "next";
+import prisma from "../../../lib/prisma";
 
 // PUT /api/publish/:id
-export default async function handle(req: NextApiRequest, res: NextApiResponse) {
-  const postId = req.query.id
-  const post = await prisma.post.update({
-    where: { id: Number(postId) },
+export default async function handle(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const postId = req.query.id;
+  const post = await prisma.data.update({
+    where: { id: String(postId) },
     data: { published: true },
-  })
-  res.json(post)
+  });
+  res.json(post);
 }
