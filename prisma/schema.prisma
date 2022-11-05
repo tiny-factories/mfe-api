@@ -14,6 +14,8 @@ model Data {
   unitId      Int?
   source      Source?  @relation(fields: [sourceId], references: [id])
   sourceId    Int?
+  matter      Matter?  @relation(fields: [matterId], references: [id])
+  matterId    Int?
   published   Boolean  @default(false)
   createdAt   DateTime @default(now()) @map(name: "created_at")
   updatedAt   DateTime @updatedAt @map(name: "updated_at")
@@ -26,6 +28,12 @@ model Unit {
   name         String
   abbreviation String?
   data         Data[]
+}
+
+model Matter {
+  id           Int     @id @default(autoincrement())
+  name         String
+  dataPoints         Data[]
 }
 
 model Account {
