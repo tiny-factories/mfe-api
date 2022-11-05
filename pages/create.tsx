@@ -5,11 +5,12 @@ import Router from "next/router";
 const Draft: React.FC = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [authorEmail, setAuthorEmail] = useState("");
 
   const submitData = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      const body = { title, content };
+      const body = { title, content, authorEmail };
       await fetch(`/api/post`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -25,13 +26,33 @@ const Draft: React.FC = () => {
     <Layout>
       <div>
         <form onSubmit={submitData}>
-          <h1>New Draft</h1>
+          <h1>Create Draft</h1>
           <input
             autoFocus
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Title"
+            placeholder="measurement"
             type="text"
             value={title}
+          />
+          <select name="unit">
+            <option value="Computer Architecture" selected>
+              PPM (Parts Per Million)
+            </option>
+            <option value="Computer Architecture" selected>
+              PPB (Parts Per Billion)
+            </option>
+          </select>
+
+          <select name="source">
+            <option value="Computer Architecture" selected>
+              NOAA
+            </option>
+          </select>
+          <input
+            onChange={(e) => setAuthorEmail(e.target.value)}
+            placeholder="Author (email address)"
+            type="text"
+            value={authorEmail}
           />
           <textarea
             cols={50}
@@ -40,7 +61,11 @@ const Draft: React.FC = () => {
             rows={8}
             value={content}
           />
-          <input disabled={!content || !title} type="submit" value="Create" />
+          <input
+            disabled={!content || !title || !authorEmail}
+            type="submit"
+            value="Create"
+          />
           <a className="back" href="#" onClick={() => Router.push("/")}>
             or Cancel
           </a>

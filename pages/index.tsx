@@ -1,19 +1,9 @@
 import React from "react";
-import type { GetServerSideProps } from "next";
+import { GetServerSideProps } from "next";
 import Layout from "../components/Layout";
 import Post, { PostProps } from "../components/Post";
+import { makeSerializable } from "../lib/util";
 import prisma from "../lib/prisma";
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const feed = await prisma.Data.findMany({
-    where: {
-      published: true,
-    },
-  });
-  return {
-    props: { feed },
-  };
-};
 
 type Props = {
   feed: PostProps[];
@@ -23,13 +13,13 @@ const Blog: React.FC<Props> = (props) => {
   return (
     <Layout>
       <div className="page">
-        <h1>Public Feed</h1>
+        <h1>My Blog</h1>
         <main>
-          {/* {props.feed.map((post) => (
+          {props.feed.map((post) => (
             <div key={post.id} className="post">
               <Post post={post} />
             </div>
-          ))} */}
+          ))}
         </main>
       </div>
       <style jsx>{`
@@ -48,6 +38,16 @@ const Blog: React.FC<Props> = (props) => {
       `}</style>
     </Layout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const feed = await prisma.data.findMany({
+    where: { published: true },
+    include: { author: true },
+  });
+  return {
+    props: { feed: makeSerializable(feed) },
+  };
 };
 
 export default Blog;

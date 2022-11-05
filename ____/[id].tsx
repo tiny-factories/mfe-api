@@ -7,20 +7,6 @@ import { PostProps } from "../../components/Post";
 import { makeSerializable } from "../../lib/util";
 import prisma from "../../lib/prisma";
 
-async function publish(id: number): Promise<void> {
-  await fetch(`/api/publish/${id}`, {
-    method: "PUT",
-  });
-  await Router.push("/");
-}
-
-async function destroy(id: String): Promise<void> {
-  await fetch(`/api/post/${id}`, {
-    method: "DELETE",
-  });
-  await Router.push("/");
-}
-
 const Post: React.FC<PostProps> = (props) => {
   let measurement = props.measurement;
   if (!props.published) {
@@ -33,10 +19,6 @@ const Post: React.FC<PostProps> = (props) => {
         <h2>{measurement}</h2>
         <p>By {props?.author?.name || "Unknown author"}</p>
         <ReactMarkdown children={props.content} />
-        {!props.published && (
-          <button onClick={() => publish(props.id)}>Publish</button>
-        )}
-        {/* <button onClick={() => destroy(props.id)}>Delete</button> */}
       </div>
       <style jsx>{`
         .page {
@@ -69,7 +51,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   );
   const post = await prisma.data.findUnique({
     where: { id },
-    include: { author: true },
   });
   return { props: { ...makeSerializable(post) } };
 };
