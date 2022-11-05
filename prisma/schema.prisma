@@ -9,7 +9,8 @@ datasource db {
 
 model Data {
   id          String    @id @default(cuid())
-  measurement String
+  measurement String?
+  title String?
   unit        Unit?     @relation(fields: [unitId], references: [id])
   unitId      String?
   source      Source?   @relation(fields: [sourceId], references: [id])
@@ -24,6 +25,8 @@ model Data {
   updatedAt   DateTime  @updatedAt @map(name: "updated_at")
   author      User?     @relation(fields: [authorId], references: [id])
   authorId    Int?
+  internallyGeneratedData Boolean
+  internallyHostedData Boolean
 }
 
 model Unit {
@@ -46,12 +49,14 @@ model Location {
 }
 
 model Matter {
-  id           String @id @default(cuid())
+  id           String  @id @default(cuid())
   name         String
   abbreviation String?
-  slug         String @unique
+  slug         String  @unique
   dataPoints   Data[]
-  
+
+  Source   Source? @relation(fields: [sourceId], references: [id])
+  sourceId String?
 }
 
 model Account {
@@ -103,13 +108,14 @@ model User {
 }
 
 model Source {
-  id           String   @id @default(cuid())
-  name         String?
-  abbreviation String?
-  image        String?
-  createdAt    DateTime @default(now()) @map(name: "created_at")
-  updatedAt    DateTime @updatedAt @map(name: "updated_at")
-  datas        Data[]
+  id                   String   @id @default(cuid())
+  name                 String?
+  abbreviation         String?
+  image                String?
+  createdAt            DateTime @default(now()) @map(name: "created_at")
+  updatedAt            DateTime @updatedAt @map(name: "updated_at")
+  datas                Data[]
+  thingsMeasured Matter[]
 
 }
 
@@ -128,3 +134,4 @@ model Profile {
   userId Int     @unique
   user   User    @relation(fields: [userId], references: [id])
 }
+
