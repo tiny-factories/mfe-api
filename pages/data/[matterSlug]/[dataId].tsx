@@ -5,7 +5,7 @@ function Review() {
   const { matterSlug, dataId } = router.query;
   return (
     <h1>
-      Matter IF for co2 of {matterSlug} of data point {dataId}
+      {matterSlug} cat of data point {dataId}
     </h1>
   );
 }
