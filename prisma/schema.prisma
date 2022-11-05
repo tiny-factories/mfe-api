@@ -8,25 +8,25 @@ datasource db {
 }
 
 model Data {
-  id          String    @id @default(cuid())
-  measurement String?
-  title String?
-  unit        Unit?     @relation(fields: [unitId], references: [id])
-  unitId      String?
-  source      Source?   @relation(fields: [sourceId], references: [id])
-  sourceId    String?
-  matter      Matter?   @relation(fields: [matterSlug], references: [slug])
-  matterSlug  String?
-  published   Boolean   @default(false)
-  location    Location? @relation(fields: [locationId], references: [id])
-  locationId  String?
-  measuredAt  DateTime  @default(now()) @map(name: "measured_at")
-  createdAt   DateTime  @default(now()) @map(name: "created_at")
-  updatedAt   DateTime  @updatedAt @map(name: "updated_at")
-  author      User?     @relation(fields: [authorId], references: [id])
-  authorId    Int?
-  internallyGeneratedData Boolean
-  internallyHostedData Boolean
+  id                      String    @id @default(cuid())
+  measurement             String?
+  title                   String?
+  unit                    Unit?     @relation(fields: [unitId], references: [id])
+  unitId                  String?
+  source                  Source?   @relation(fields: [sourceId], references: [id])
+  sourceId                String?
+  matter                  Matter?   @relation(fields: [matterSlug], references: [slug])
+  matterSlug              String?
+  published               Boolean   @default(false)
+  location                Location? @relation(fields: [locationId], references: [id])
+  locationId              String?
+  measuredAt              DateTime  @default(now()) @map(name: "measured_at")
+  createdAt               DateTime  @default(now()) @map(name: "created_at")
+  updatedAt               DateTime  @updatedAt @map(name: "updated_at")
+  author                  User?     @relation(fields: [authorId], references: [id])
+  authorId                Int?
+  internallyGeneratedData Boolean @default(false)
+  internallyHostedData    Boolean @default(false)
 }
 
 model Unit {
@@ -108,13 +108,13 @@ model User {
 }
 
 model Source {
-  id                   String   @id @default(cuid())
-  name                 String?
-  abbreviation         String?
-  image                String?
-  createdAt            DateTime @default(now()) @map(name: "created_at")
-  updatedAt            DateTime @updatedAt @map(name: "updated_at")
-  datas                Data[]
+  id             String   @id @default(cuid())
+  name           String?
+  abbreviation   String?
+  image          String?
+  createdAt      DateTime @default(now()) @map(name: "created_at")
+  updatedAt      DateTime @updatedAt @map(name: "updated_at")
+  datas          Data[]
   thingsMeasured Matter[]
 
 }
