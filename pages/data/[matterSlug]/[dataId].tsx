@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 
 function Review() {
   const router = useRouter();
-  const { matterId, dataId } = router.query;
+  const { matterSlug, dataId } = router.query;
   return (
     <h1>
-      Matter IF for co2 of {matterId} of data point {dataId}
+      Matter IF for co2 of {matterSlug} of data point {dataId}
     </h1>
   );
 }

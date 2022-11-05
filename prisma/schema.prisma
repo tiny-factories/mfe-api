@@ -14,8 +14,8 @@ model Data {
   unitId      String?
   source      Source?   @relation(fields: [sourceId], references: [id])
   sourceId    String?
-  matter      Matter?   @relation(fields: [matterId], references: [id])
-  matterId    String?
+  matter      Matter?   @relation(fields: [matterSlug], references: [slug])
+  matterSlug  String?
   published   Boolean   @default(false)
   location    Location? @relation(fields: [locationId], references: [id])
   locationId  String?
@@ -30,6 +30,7 @@ model Unit {
   id           String  @id @default(cuid())
   name         String
   abbreviation String?
+  slug         String?
   data         Data[]
 }
 
@@ -39,14 +40,18 @@ model Location {
   address String?
   long    String?
   lat     String?
-  data    Data[]
+  slug    String?
+
+  data Data[]
 }
 
 model Matter {
-  id           String  @id @default(cuid())
+  id           String @id @default(cuid())
   name         String
   abbreviation String?
+  slug         String @unique
   dataPoints   Data[]
+  
 }
 
 model Account {
@@ -123,4 +128,3 @@ model Profile {
   userId Int     @unique
   user   User    @relation(fields: [userId], references: [id])
 }
-

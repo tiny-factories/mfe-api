@@ -12,8 +12,9 @@ export type DataProps = {
   matter: {
     name: string;
     abbrevation: string;
+    slug: string;
   };
-  matterId: string;
+  matterSlug: string;
   published: boolean;
 };
 
