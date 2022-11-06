@@ -9,18 +9,23 @@ type Props = {
   feed: DataProps[];
 };
 
-const Blog: React.FC<Props> = (props) => {
+const DataPage: React.FC<Props> = (props) => {
   return (
     <Layout>
       <div>
-        <h1>All Data</h1>
-        <main>
-          {props.feed.map((data) => (
-            <div key={data.id} className="post">
-              <Data data={data} />
-            </div>
-          ))}
-        </main>
+        <div>
+          {" "}
+          <h1>All Data</h1>
+        </div>
+        <div>Search and Filtering</div>
+        <div>Data with Pagination</div>
+        <div></div>
+
+        {props.feed.map((data) => (
+          <div key={data.id} className="post">
+            <Data data={data} />
+          </div>
+        ))}
       </div>
     </Layout>
   );
@@ -35,4 +40,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export default Blog;
+export default DataPage;

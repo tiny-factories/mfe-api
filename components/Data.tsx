@@ -21,9 +21,16 @@ export type DataProps = {
 const Data: React.FC<{ data: DataProps }> = ({ data }) => {
   const unitAbbrevation = data.unit ? data.unit.abbrevation : "unit unknown";
   return (
-    <div onClick={() => Router.push("/data/[id]", `/data/${data.id}`)}>
+    <div
+      onClick={() =>
+        Router.push(
+          `/data/${data.matterSlug}/[id]`,
+          `/data/${data.matterSlug}/${data.id}`
+        )
+      }
+    >
       <h2>{data.measurement}</h2>
-      <small>{unitAbbrevation}</small>
+      <small>{data.matterSlug}</small>
       <style jsx>{`
         div {
           color: inherit;

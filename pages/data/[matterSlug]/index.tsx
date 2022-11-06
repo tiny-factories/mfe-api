@@ -19,8 +19,10 @@ const DataPoint: React.FC<Props> = (props) => {
   return (
     <Layout>
       <div>
-        <h1>Only data for {matterSlug}</h1>
-        <main>
+        <div className="text-lg font-bold">{matterSlug}</div>
+        <div>Some Kinda Filter</div>
+
+        <div>
           {!result.length && <>No Data</>}
           {result.length && (
             <>
@@ -31,11 +33,13 @@ const DataPoint: React.FC<Props> = (props) => {
               ))}
             </>
           )}
-        </main>
+        </div>
       </div>
     </Layout>
   );
 };
+
+// lookup data on  matter here
 
 export const getServerSideProps: GetServerSideProps = async () => {
   // Should move matterSlug filter to here to reduce the client load
