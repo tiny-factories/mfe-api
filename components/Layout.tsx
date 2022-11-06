@@ -4,12 +4,12 @@ import Footer from "../components/Footer";
 export default function Layout({ children }) {
   return (
     <>
-      {/* <script
+      <script
         async
         defer
-        data-website-id="5620b8c4-3a0a-443c-8855-84fb6ccec68b"
+        data-website-id="cae4e4ad-25a6-499a-849b-aa9bf23be339"
         src="https://umami.tinyfactories.space/umami.js"
-      ></script> */}
+      ></script>
       <div className="mx-auto p-9">
         <Navagation />
         <main>{children}</main>
