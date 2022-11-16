@@ -49,7 +49,7 @@ const Home: NextPage = () => {
                   className="mt-12 sm:flex sm:w-full sm:max-w-lg"
                 >
                   <div className="min-w-0 flex-1">
-                    <label htmlFor="bd-email" className="sr-only">
+                   <label htmlFor="bd-email" className="sr-only">
                       Email address
                     </label>
                     <input
@@ -62,14 +62,17 @@ const Home: NextPage = () => {
                     <input type="hidden" name="tag" value="API MFE" />
                   </div>
                   <div className="mt-4 sm:mt-0 sm:ml-3">
+                   
+                   
                     <button
-                      type="submit"
                       className="block w-full rounded-md border border-transparent bg-green-600 px-5 py-3 text-base font-medium text-white shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:px-10"
                     >
                       Notify me
-                    </button>
+                    </button> 
                   </div>
                 </form>
+                
+            
 
                 <div className="mt-6">
                   <div className="inline-flex items-center divide-x divide-gray-300">
