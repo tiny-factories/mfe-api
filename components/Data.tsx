@@ -31,12 +31,6 @@ const Data: React.FC<{ data: DataProps }> = ({ data }) => {
     >
       <h2>{data.measurement}</h2>
       <small>{data.matterSlug}</small>
-      <style jsx>{`
-        div {
-          color: inherit;
-          padding: 2rem;
-        }
-      `}</style>
     </div>
   );
 };
