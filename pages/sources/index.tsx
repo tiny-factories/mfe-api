@@ -20,9 +20,13 @@ const DataPage: React.FC<Props> = (props) => {
           We started a glossary of terms, technologies, policies, and
           regulations around climate change to ...
         </div>
-        <div>
+        <div className="rounded-lg gap-5 sm:grid sm:grid-cols-3 sm:gap-px sm:divide-y-0">
           {props.feed.map((data) => (
-            <div key={data.id} className="grid grid-cols-3 gap-4">
+            <div
+              key={data.id}
+              className="rounded-bl-lg 
+            relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
+            >
               <Source data={data} />
             </div>
           ))}

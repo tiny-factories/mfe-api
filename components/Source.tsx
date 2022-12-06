@@ -16,7 +16,7 @@ const Sources: React.FC<{ data: SourcesProps }> = ({ data }) => {
   const unitAbbrevation = data.unit ? data.unit.abbrevation : "unit unknown";
   return (
     <div
-      className="bg-black-300 rounded "
+      className=""
       onClick={() =>
         Router.push(
           `/data/${data.matterSlug}/[id]`,
