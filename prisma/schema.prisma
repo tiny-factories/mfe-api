@@ -53,10 +53,9 @@ model Matter {
   name         String
   abbreviation String?
   slug         String  @unique
-
-  dataPoints Data[]
-  Source     Source? @relation(fields: [sourceId], references: [id])
-  sourceId   String?
+  dataPoints  Data[]
+  dataSources Source[]
+  
 }
 
 model Account {
@@ -137,5 +136,4 @@ model Profile {
   userId Int     @unique
   user   User    @relation(fields: [userId], references: [id])
 }
-
 

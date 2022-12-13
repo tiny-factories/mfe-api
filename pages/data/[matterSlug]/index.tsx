@@ -1,42 +1,136 @@
-import React from "react";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import Layout from "../../../components/Layout";
 import Data, { DataProps } from "../../../components/Data";
+import MyResponsiveLine from "../../../components/MyResponsiveLine";
 import { makeSerializable } from "../../../lib/util";
 import prisma from "../../../lib/prisma";
-import { Line } from "react-chartjs-2";
 
 type Props = {
   feed: DataProps[];
 };
 
-const lineData = {
-  labels: ["January", "February", "March", "April", "May", "June", "July"],
-  datasets: [
-    {
-      label: "My First dataset",
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: "rgba(75,192,192,0.4)",
-      borderColor: "rgba(75,192,192,1)",
-      borderCapStyle: "butt",
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: "miter",
-      pointBorderColor: "rgba(75,192,192,1)",
-      pointBackgroundColor: "#fff",
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: "rgba(75,192,192,1)",
-      pointHoverBorderColor: "rgba(220,220,220,1)",
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [65, 59, 80, 81, 56, 55, 40],
-    },
-  ],
+const chartdata = [
+  {
+    id: "CO₂",
+    color: "hsl(70, 70%, 50%)",
+    data: [
+      {
+        x: "year",
+        y: 300,
+      },
+    ],
+  },
+];
+
+const useSortableData = (items, config = null) => {
+  const [sortConfig, setSortConfig] = React.useState(config);
+
+  const sortedItems = React.useMemo(() => {
+    let sortableItems = [...items];
+    if (sortConfig !== null) {
+      sortableItems.sort((a, b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return sortConfig.direction === "ascending" ? -1 : 1;
+        }
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          return sortConfig.direction === "ascending" ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+    return sortableItems;
+  }, [items, sortConfig]);
+
+  const requestSort = (key) => {
+    let direction = "ascending";
+    if (
+      sortConfig &&
+      sortConfig.key === key &&
+      sortConfig.direction === "ascending"
+    ) {
+      direction = "descending";
+    }
+    setSortConfig({ key, direction });
+  };
+
+  return { items: sortedItems, requestSort, sortConfig };
+};
+
+const ProductTable = (props) => {
+  const { items, requestSort, sortConfig } = useSortableData(props.products);
+  const getClassNamesFor = (measurement) => {
+    if (!sortConfig) {
+      return;
+    }
+    return sortConfig.key === measurement ? sortConfig.direction : undefined;
+  };
+  return (
+    <table className="min-w-full divide-y divide-gray-300">
+      {/* <caption>Products</caption> */}
+
+      <thead className="bg-gray-50">
+        <tr>
+          <th
+            scope="col"
+            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+          >
+            {" "}
+            <button
+              type="button"
+              onClick={() => requestSort("measurement")}
+              className={getClassNamesFor("measurement")}
+            >
+              Measurement
+            </button>
+          </th>
+          <th
+            scope="col"
+            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+          >
+            {" "}
+            <button
+              type="button"
+              onClick={() => requestSort("price")}
+              className={getClassNamesFor("price")}
+            >
+              Price
+            </button>
+          </th>
+          <th
+            scope="col"
+            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+          >
+            {" "}
+            <button
+              type="button"
+              onClick={() => requestSort("stock")}
+              className={getClassNamesFor("stock")}
+            >
+              Date Measured
+            </button>
+          </th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-gray-200 bg-white">
+        {items.map((item, i) => (
+          <tr key={i}>
+            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+              {item.measurement}
+            </td>
+            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+              {item.unit}
+            </td>
+            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+              {item.measuredAt}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
 };
 
 const DataPoint: React.FC<Props> = (props) => {
@@ -44,13 +138,36 @@ const DataPoint: React.FC<Props> = (props) => {
   const { matterSlug } = router.query;
   var result = props.feed.filter((d) => d.matterSlug === `${matterSlug}`);
 
-  // could filter here but thats till pulling all the ddata?
   return (
     <Layout>
-      <div>
-        <div>
+      <div className="grid grid-cols-4 gap-4">
+        <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
           <div className="text-lg font-bold">{matterSlug}</div>
-          <div>Some Kinda Filter</div>
+          <div className="">descrioton from glossary.marforearth</div>
+        </div>
+        <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
+          <MyResponsiveLine data={chartdata} filter="" />
+        </div>
+        <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
+          02
+        </div>
+        <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
+          02
+        </div>
+
+        <div className="col-span-4 min-h-96 p-9 rounded border bg-black-200">
+          <ProductTable products={result} />
+        </div>
+      </div>
+      <div>
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="mt-8 flex flex-col">
+            <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg"></div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div>
@@ -64,15 +181,6 @@ const DataPoint: React.FC<Props> = (props) => {
                 </Link>{" "}
                 if the issue persists.
               </div>
-            </>
-          )}
-          {result.length && (
-            <>
-              {result.map((data) => (
-                <div key={data.id} className="post">
-                  <Data data={data} />
-                </div>
-              ))}
             </>
           )}
         </div>
@@ -94,3 +202,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 
 export default DataPoint;
+
+// Examples for Table Sort https://codesandbox.io/s/table-sorting-example-ur2z9?from-embed=&file=/src/App.js:1701-1705

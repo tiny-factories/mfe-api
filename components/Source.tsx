@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import Router from "next/router";
-import ReactMarkdown from "react-markdown";
 
 export type SourcesProps = {
   id: number;
@@ -10,22 +9,22 @@ export type SourcesProps = {
   description: string;
   websiteHref: string;
   dataHref: string;
+  thingsMeasured: {
+    id: number;
+    name: string;
+    abbrevation: string;
+    slug: string;
+  };
 };
 
 const Sources: React.FC<{ data: SourcesProps }> = ({ data }) => {
-  const unitAbbrevation = data.unit ? data.unit.abbrevation : "unit unknown";
   return (
-    <div
-      className=""
-      onClick={() =>
-        Router.push(
-          `/data/${data.matterSlug}/[id]`,
-          `/data/${data.matterSlug}/${data.id}`
-        )
-      }
-    >
+    <div className="">
       <div className="font-bold">{data.name}</div>
-      <div>{data.matterSlug}</div>
+      <div className="">Description</div>
+      <div className="">Measured:</div>
+
+      <div>{data.thingsMeasured && <>cats</>}</div>
       <div>
         {data.websiteHref && (
           <Link href={data.websiteHref}>
