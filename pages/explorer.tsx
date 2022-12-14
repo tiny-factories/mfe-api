@@ -13,7 +13,7 @@ const Home: NextPage = () => {
     <Layout>
       <title>API Made For Earth</title>
       <meta property="og:image" content="https://api.madefor.earth/api/og" />
-      <div>It's a map</div>
+      <div>Its a map</div>
     </Layout>
   );
 };
