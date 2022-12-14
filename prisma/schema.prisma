@@ -49,13 +49,15 @@ model Location {
 }
 
 model Matter {
-  id           String  @id @default(cuid())
-  name         String
-  abbreviation String?
-  slug         String  @unique
-  dataPoints  Data[]
-  dataSources Source[]
-  
+  id             String   @id @default(cuid())
+  name           String
+  abbreviation   String?
+  description    String?
+  glossaryMfeApi String?
+  slug           String   @unique
+  dataPoints     Data[]
+  dataSources    Source[]
+
 }
 
 model Account {
@@ -136,4 +138,5 @@ model Profile {
   userId Int     @unique
   user   User    @relation(fields: [userId], references: [id])
 }
+
 

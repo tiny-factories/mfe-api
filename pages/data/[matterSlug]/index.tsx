@@ -3,8 +3,10 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Layout from "../../../components/Layout";
-import Data, { DataProps } from "../../../components/Data";
+import { DataProps } from "../../../components/Data";
 import MyResponsiveLine from "../../../components/MyResponsiveLine";
+import Map from "../../../components/Map";
+
 import { makeSerializable } from "../../../lib/util";
 import prisma from "../../../lib/prisma";
 
@@ -12,18 +14,18 @@ type Props = {
   feed: DataProps[];
 };
 
-const chartdata = [
-  {
-    id: "CO₂",
-    color: "hsl(70, 70%, 50%)",
-    data: [
-      {
-        x: "year",
-        y: 300,
-      },
-    ],
-  },
-];
+// const lineChartData = [
+//   {
+//     id: "CO₂",
+//     color: "hsl(70, 70%, 50%)",
+//     data: [
+//       {
+//         x: "year",
+//         y: 300,
+//       },
+//     ],
+//   },
+// ];
 
 const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = React.useState(config);
@@ -59,7 +61,7 @@ const useSortableData = (items, config = null) => {
   return { items: sortedItems, requestSort, sortConfig };
 };
 
-const ProductTable = (props) => {
+const ProductTable = (props, lineChartData) => {
   const { items, requestSort, sortConfig } = useSortableData(props.products);
   const getClassNamesFor = (measurement) => {
     if (!sortConfig) {
@@ -106,8 +108,8 @@ const ProductTable = (props) => {
             {" "}
             <button
               type="button"
-              onClick={() => requestSort("stock")}
-              className={getClassNamesFor("stock")}
+              onClick={() => requestSort("date")}
+              className={getClassNamesFor("date")}
             >
               Date Measured
             </button>
@@ -143,19 +145,26 @@ const DataPoint: React.FC<Props> = (props) => {
       <div className="grid grid-cols-4 gap-4">
         <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
           <div className="text-lg font-bold">{matterSlug}</div>
-          <div className="">descrioton from glossary.marforearth</div>
+          {/* <div className="">{description}</div> */}
         </div>
         <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
-          <MyResponsiveLine data={chartdata} filter="" />
-        </div>
-        <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
-          02
+          <MyResponsiveLine data={result} filter="" />
         </div>
         <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
           02
+        </div>
+        <div className="col-span-2 h-96 rounded border bg-black-200">
+          <Map />
         </div>
 
-        <div className="col-span-4 min-h-96 p-9 rounded border bg-black-200">
+        <div className="col-span-4 min-h-96 rounded border bg-black-200">
+          <div className="flex flex-wrap justify-between border-b">
+            <div className="pl-2">Choose timespand</div>
+
+            <div className="">Yearly</div>
+            <div className="">Monthly</div>
+            <div className="pr-2">Weekly</div>
+          </div>
           <ProductTable products={result} />
         </div>
       </div>
@@ -199,6 +208,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: { feed: makeSerializable(feed) },
   };
+  // Clean 'result' data for the Line Chart
 };
 
 export default DataPoint;

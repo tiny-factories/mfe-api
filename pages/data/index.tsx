@@ -22,12 +22,11 @@ const DataPage: React.FC<Props> = (props) => {
         <div>Search and Filtering</div>
         <div>Data with Pagination</div>
         <div></div>
-        <div className="rounded-lg gap-5 sm:grid sm:grid-cols-3 sm:gap-px sm:divide-y-0">
+        <div className="grid grid-cols-12 gap-4">
           {props.feed.map((data) => (
             <div
               key={data.id}
-              className="rounded-bl-lg 
-        relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
+              className="col-span-3 p-3 rounded border bg-black-200"
             >
               {" "}
               <Matter data={data} />

@@ -46,21 +46,25 @@ const Home: NextPage = () => {
         <div className="col-span-4 h-96 p-9 rounded border bg-black-200">
           05
         </div>
-        <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
+        <div className="col-span-4 sm:col-span-2 h-96 p-9 rounded border bg-black-200">
           Widget
         </div>
-        <div className="col-span-1 h-96 p-9 rounded border bg-black-200">
+        <div className="col-span-4 sm:col-span-2 md:col-span-1 h-96 p-9 rounded border bg-black-200">
           07
         </div>
-        <div className="col-span-1 h-96 p-9 rounded border bg-black-200">
+        <div className="col-span-4 sm:col-span-2 md:col-span-1 h-96 p-9 rounded border bg-black-200">
           07
         </div>
-        <div className="col-span-1 h-96 p-9 rounded border bg-black-200">
+        <div className="col-span-4 sm:col-span-2 md:col-span-1 h-96 p-9 rounded border bg-black-200">
           07
         </div>
-        <div className="col-span-1 h-96 p-9 rounded border bg-black-200">
+        <div className="col-span-4 sm:col-span-2 md:col-span-1 h-96 p-9 rounded border bg-black-200">
           07
         </div>
+        <div className="col-span-4 sm:col-span-2 md:col-span-1 h-96 p-9 rounded border bg-black-200">
+          07
+        </div>
+
         <div className="col-span-4 h-96 p-9 rounded border bg-black-200">
           Newsletter
         </div>
