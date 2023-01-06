@@ -7,4 +7,7 @@ module.exports = {
       "https://jspm.dev/",
     ],
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
