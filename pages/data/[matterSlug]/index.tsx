@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Layout from "../../../components/Layout";
 import { DataProps } from "../../../components/Data";
-import MyResponsiveLine from "../../../components/MyResponsiveLine";
+// import MyResponsiveLine from "../../../components/MyResponsiveLine";
 import Map from "../../../components/Map";
 
 import { makeSerializable } from "../../../lib/util";
@@ -148,7 +148,7 @@ const DataPoint: React.FC<Props> = (props) => {
           {/* <div className="">{description}</div> */}
         </div>
         <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
-          <MyResponsiveLine data={result} filter="" />
+          {/* <MyResponsiveLine data={result} filter="" /> */}
         </div>
         <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
           02
