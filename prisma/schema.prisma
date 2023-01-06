@@ -25,8 +25,8 @@ model Data {
   updatedAt               DateTime  @updatedAt @map(name: "updated_at")
   author                  User?     @relation(fields: [authorId], references: [id])
   authorId                Int?
-  internallyGeneratedData Boolean @default(false)
-  internallyHostedData    Boolean @default(false)
+  internallyGeneratedData Boolean   @default(false)
+  internallyHostedData    Boolean   @default(false)
 }
 
 model Unit {
@@ -49,14 +49,15 @@ model Location {
 }
 
 model Matter {
-  id           String  @id @default(cuid())
-  name         String
-  abbreviation String?
-  slug         String  @unique
-  dataPoints   Data[]
+  id             String   @id @default(cuid())
+  name           String
+  abbreviation   String?
+  description    String?
+  glossaryMfeApi String?
+  slug           String   @unique
+  dataPoints     Data[]
+  dataSources    Source[]
 
-  Source   Source? @relation(fields: [sourceId], references: [id])
-  sourceId String?
 }
 
 model Account {
@@ -111,6 +112,9 @@ model Source {
   id             String   @id @default(cuid())
   name           String?
   abbreviation   String?
+  description    String?
+  websiteHref    String?
+  dataHref       String?
   image          String?
   createdAt      DateTime @default(now()) @map(name: "created_at")
   updatedAt      DateTime @updatedAt @map(name: "updated_at")
@@ -134,4 +138,5 @@ model Profile {
   userId Int     @unique
   user   User    @relation(fields: [userId], references: [id])
 }
+
 
