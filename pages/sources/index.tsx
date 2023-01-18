@@ -28,7 +28,7 @@ const SourcesPage: React.FC<Props> = (props) => {
             </div>
 
             <div className=" ">
-              Don't see the data your looking for? Reachout to us.
+              Don&apos;t see the data your looking for? Reachout to us.
             </div>
           </div>
           <div className="">iamge</div>

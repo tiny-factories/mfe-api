@@ -145,9 +145,7 @@ const Home: NextPage = (props) => {
           </div>
         </div>
       </div>
-      <div className="my-9 col-span-2 rounded border bg-black-200">
-        Data Things
-      </div>
+
       <div className="my-9 p-9 col-span-2 rounded border bg-black-200">
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="">
@@ -175,10 +173,39 @@ const Home: NextPage = (props) => {
           </div>
         </div>
       </div>
-      <div className="my-9 col-span-2 rounded border bg-black-200">
-        Playground
+
+      <div className="my-9 col-span-2 border-t bg-black-200">
+        <div className="flex flex-flex-wrap justify-between">
+          <div className="text-sectionTitle font-bold uppercase">the Data </div>
+
+          <Link href="/data">
+            <div className="text-sectionTitle font-bold uppercase font-mono transform-gpu hover:translate-x-2">
+              →
+            </div>
+          </Link>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="">Data Sets</div>
+          <div className="">Data Source</div>
+        </div>
       </div>
-      <div className="my-9  col-span-2 rounded border bg-[#201F25] text-[#DADCE0]">
+      <div className="my-9 col-span-2 border-t bg-black-200">
+        <div className="flex flex-flex-wrap justify-between">
+          <div className="text-sectionTitle font-bold uppercase">our tools</div>
+
+          <Link href="/data">
+            <div className="text-sectionTitle font-bold uppercase font-mono transform-gpu hover:translate-x-2">
+              →
+            </div>
+          </Link>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="">Banner Creator</div>
+          <div className="">Graph Creator</div>
+        </div>
+      </div>
+
+      {/* <div className="my-9  col-span-2 rounded border bg-[#201F25] text-[#DADCE0]">
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="p-9">
             <div className="text-subTitle uppercase">
@@ -218,7 +245,8 @@ const Home: NextPage = (props) => {
             sizes="100vw"
           />
         </div>
-      </div>
+      </div> */}
+
       <div className="my-9 col-span-2 border-t bg-black-200">
         <div className="flex flex-flex-wrap justify-between">
           <div className="text-sectionTitle font-bold uppercase">
