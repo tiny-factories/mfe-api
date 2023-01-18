@@ -23,13 +23,10 @@ module.exports = {
       body: ['"Open Sans"'],
     },
     fontSize: {
-      caption: "0.8rem",
-      paragraph: "1rem",
-      h5: "1.25rem",
-      h4: "1.563rem",
-      h3: "1.953rem",
-      h2: "2.441rem",
-      h1: "3.052rem",
+      title: "144px",
+      sectionTitle: "48px",
+      subTitle: "24px",
+      paragraph: "36px",
     },
     colors: {
       green: "#0C7D01",
