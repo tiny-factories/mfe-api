@@ -23,7 +23,7 @@ module.exports = {
       body: ['"Open Sans"'],
     },
     fontSize: {
-      title: "144px",
+      title: "96px",
       sectionTitle: "48px",
       subTitle: "24px",
       paragraph: "36px",

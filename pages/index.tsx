@@ -55,31 +55,33 @@ const Home: NextPage = (props) => {
       ]`,
     label: "/today",
   });
-  console.log(selectedOption);
+  // console.log(selectedOption);
 
   return (
     <Layout>
-      <div className="my-9 col-span-2 h-screen">
-        <div className="text-subTitle uppercase">increasing aucess to</div>
-        <div className="text-title font-bold">Decades of Climate data</div>
+      <div className="my-9 col-span-2 h-fit">
+        <div className="md:text-subTitle font-bold uppercase">
+          increasing aucess to
+        </div>
+        <div className="text-sectionTitle md:text-title font-bold">
+          Decades of Climate data
+        </div>
       </div>
-      <div className="my-9 col-span-2 border-t bg-black-200">
+      <div className="my-9 col-span-2 border-t-4 bg-black-200">
         <div className="flex flex-flex-wrap justify-between">
-          <div className="text-sectionTitle font-bold uppercase">
+          <div className="text-subTitle md:text-sectionTitle font-bold uppercase">
             Today’s atmopheric readings
           </div>
 
           <Link href="/data">
-            <div className="text-sectionTitle font-bold uppercase font-mono transform-gpu hover:translate-x-2">
-              →
-            </div>
+            <div className="text-subTitle md:text-sectionTitle font-bold uppercase font-mono transform-gpu hover:translate-x-2"></div>
           </Link>
         </div>
         <div className="grid sm:grid-cols-4 gap-4">
-          <div className="rounded border ">
+          <div className="rounded border-2">
             {/* Today's CH₄ Data */}
             {!props.atmosphericReadings[0].ch4 ? (
-              <div className="p-3 items-center  ">
+              <div className="p-3 items-center ">
                 <span className="font-bold">CH₄</span> is{" "}
                 <span className="animate-pulse">loading</span>
               </div>
@@ -92,10 +94,10 @@ const Home: NextPage = (props) => {
               </div>
             )}
           </div>
-          <div className="rounded border ">
+          <div className="rounded border-2">
             {/* Today's CO₂ Data */}
             {!props.atmosphericReadings[1].co2 ? (
-              <div className="p-3 items-center  ">
+              <div className="p-3 items-center">
                 <span className="font-bold">CO₂</span> is{" "}
                 <span className="animate-pulse">loading</span>
               </div>
@@ -108,11 +110,10 @@ const Home: NextPage = (props) => {
               </div>
             )}
           </div>
-
-          <div className="rounded border ">
+          <div className="rounded border-2">
             {/* Today's N₂O Data */}
             {!props.atmosphericReadings[2].n2o ? (
-              <div className="p-3 items-center  ">
+              <div className="p-3 items-center">
                 <span className="font-bold">N₂O</span> is{" "}
                 <span className="animate-pulse">loading</span>
               </div>
@@ -125,8 +126,7 @@ const Home: NextPage = (props) => {
               </div>
             )}
           </div>
-
-          <div className="rounded border ">
+          <div className="rounded border-2">
             {/* Today's SF₆ Data */}
 
             {!props.atmosphericReadings[3].sf6 ? (
@@ -146,7 +146,7 @@ const Home: NextPage = (props) => {
         </div>
       </div>
 
-      <div className="my-9 p-9 col-span-2 rounded border bg-black-200">
+      {/*}<div className="my-9 p-9 col-span-2 rounded border bg-[#343339] text-[#DADCE0]">
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="">
             <div className="text-subTitle uppercase">test drive out api</div>
@@ -172,36 +172,86 @@ const Home: NextPage = (props) => {
             <div>/api/{selectedOption.value}</div>
           </div>
         </div>
-      </div>
+      </div>*/}
 
-      <div className="my-9 col-span-2 border-t bg-black-200">
+      <div className="my-9 col-span-2 border-t-4 bg-black-200">
         <div className="flex flex-flex-wrap justify-between">
-          <div className="text-sectionTitle font-bold uppercase">the Data </div>
+          <div className="text-subTitle md:text-sectionTitle font-bold uppercase">
+            Explore the Data
+          </div>
 
           <Link href="/data">
-            <div className="text-sectionTitle font-bold uppercase font-mono transform-gpu hover:translate-x-2">
+            <div className="text-subTitle md:text-sectionTitle font-bold uppercase font-mono transform-gpu hover:translate-x-2">
               →
             </div>
           </Link>
         </div>
+        <div className="py-6 md:py-9 w-full md:w-1/2 md:text-paragraph">
+          Part of out mission is to make earth science data accessible to
+          anyone. So that we can be more informed by our actions to reduce out
+          impact on the planet.{" "}
+        </div>
         <div className="grid sm:grid-cols-2 gap-4">
-          <div className="">Data Sets</div>
-          <div className="">Data Source</div>
+          <div className="p-4 border border-2 rounded hover:cursor-pointer hover:bg-[#343339] hover:text-[#DADCE0]">
+            <div className="flex flex-flex-wrap justify-between">
+              <div className="font-bold uppercase">Data Sets</div>
+
+              <Link href="/data">
+                <div className=" font-bold uppercase font-mono ">→</div>
+              </Link>
+            </div>
+          </div>
+          <div className="p-4 border border-2 rounded hover:cursor-pointer hover:bg-[#343339] hover:text-[#DADCE0]">
+            <div className="flex flex-flex-wrap justify-between ">
+              <div className="font-bold uppercase">Data Sources</div>
+
+              <Link href="/data">
+                <div className=" font-bold uppercase font-mono ">→</div>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="my-9 col-span-2 border-t bg-black-200">
+      <div className="my-9 col-span-2 border-t-4 bg-black-200">
         <div className="flex flex-flex-wrap justify-between">
-          <div className="text-sectionTitle font-bold uppercase">our tools</div>
+          <div className="text-subTitle md:text-sectionTitle font-bold uppercase">
+            our tools
+          </div>
 
           <Link href="/data">
-            <div className="text-sectionTitle font-bold uppercase font-mono transform-gpu hover:translate-x-2">
+            <div className="text-subTitle md:text-sectionTitle font-bold uppercase font-mono">
               →
             </div>
           </Link>
         </div>
+        <div className="py-6 md:py-9 w-full md:w-1/2 md:text-paragraph">
+          Part of out mission is to make earth science data accessible to
+          anyone. So that we can be more informed by our actions to reduce out
+          impact on the planet.{" "}
+        </div>
         <div className="grid sm:grid-cols-2 gap-4">
-          <div className="">Banner Creator</div>
-          <div className="">Graph Creator</div>
+          <div className="p-4 border border-2 rounded hover:cursor-pointer hover:bg-[#343339] hover:text-[#DADCE0]">
+            <div className="flex flex-flex-wrap justify-between">
+              <div className="font-bold uppercase">Embeding Data Widget</div>
+
+              <Link href="/data">
+                <div className="font-bold uppercase font-mono">→</div>
+              </Link>
+            </div>
+            <div className="">
+              Create awareness by adding a banner to your website, github, or
+              ...
+            </div>
+          </div>
+          <div className="p-4 border border-2 rounded hover:cursor-pointer hover:bg-[#343339] hover:text-[#DADCE0]">
+            <div className="flex flex-flex-wrap justify-between">
+              <div className="font-bold uppercase">Graph Creator</div>
+
+              <Link href="/data">
+                <div className="font-bold uppercase font-mono">→</div>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -213,7 +263,7 @@ const Home: NextPage = (props) => {
               Making data more visable
             </div>
 
-            <div className="text-sectionTitle font-bold">Widgets & Banners</div>
+            <div className="text-subTitle md:text-sectionTitle font-bold">Widgets & Banners</div>
 
             <div className="text-paragraph">
               Want to help spead the word on the current health of out planet?
@@ -247,14 +297,63 @@ const Home: NextPage = (props) => {
         </div>
       </div> */}
 
-      <div className="my-9 col-span-2 border-t bg-black-200">
+      {/*Pricing Info*/}
+      <div className="my-9 p-9 col-span-2 rounded border bg-[#343339] text-[#DADCE0]">
+        <div className="uppercase font-bold">Supporting our Team</div>
+        <div className="text-subTitle md:text-sectionTitle font-bold uppercase">
+          Pricing
+        </div>
+        <div className="py-6 md:py-9 w-full md:w-1/2 ">
+          Although we are working to keep our tools and datasets free for all we
+          do need to keep the lights on and allow our team to live their life.
+          So we have aunique pricing model. For those who can we{" "}
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="p-6 md:p-9 bg-[#201F25] rounded">
+            <div className="flex flex-flex-wrap justify-between">
+              <div className="uppercase">Public</div>
+              <div className="￼">500+ Account</div>
+            </div>
+            <div className="￼">$0.00</div>
+
+            <div className="￼"></div>
+
+            <div className="￼"></div>
+
+            <div className="￼"></div>
+            <Link href="/data">
+              <div className="">SignUp</div>
+            </Link>
+          </div>
+          <div className="p-6 md:p-9 bg-[#201F25] rounded">
+            <div className="flex flex-flex-wrap justify-between">
+              <div className="uppercase">Supporter</div>
+              <div className="￼">3/1000 Avaible</div>
+            </div>
+
+            <div className="￼">$420.00</div>
+
+            <div className="￼"></div>
+
+            <div className="￼"></div>
+
+            <div className="￼"></div>
+            <Link href="/data">
+              <div className="">Support</div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="my-9 col-span-2 border-t-2 bg-black-200">
         <div className="flex flex-flex-wrap justify-between">
-          <div className="text-sectionTitle font-bold uppercase">
+          <div className="text-subTitle md:text-sectionTitle font-bold uppercase">
             Starter Examples
           </div>
 
           <Link href="/data">
-            <div className="text-sectionTitle font-bold uppercase font-mono transform-gpu hover:translate-x-2">
+            <div className="text-subTitle md:text-sectionTitle font-bold uppercase font-mono transform-gpu hover:translate-x-2">
               →
             </div>
           </Link>
@@ -267,9 +366,28 @@ const Home: NextPage = (props) => {
 
           <div className="">4</div>
         </div>
-      </div>
-      <div className="my-9 col-span-2 rounded border bg-black-200">
-        Newsletter
+      </div> */}
+      <div className="p-4 border border-2 rounded">
+        <form
+          action="https://buttondown.email/api/emails/embed-subscribe/madeforearth"
+          method="post"
+          target="popupwindow"
+          onSubmit="window.open('https://newsletter.madefor.earth', 'popupwindow')"
+          className="flex flex-flex-wrap justify-between items-center"
+        >
+          <label for="bd-email" className="">
+            Subscrube for updates on our API
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="bd-email"
+            placeholder="hello@madefor.earth"
+            className="grow outline-none border-0 underline underline-offset-2 bg-[#DADCE0] mx-4"
+          />
+          <input type="submit" value="→" />
+          <input type="hidden" name="tag" value="API → Feature Updates" />
+        </form>
       </div>
     </Layout>
   );

@@ -3,37 +3,40 @@ const navigation = {
   main: [
     {
       name: "about",
-      href: "/about",
+      href: "https://madefor.earth/about",
+    },
+    {
+      name: "fund us",
+      href: "https://github.com/sponsors/tiny-factories",
     },
     {
       name: "support us",
       href: "https://madefor.earth/support",
     },
-
-    {
-      name: "work with us",
-      href: "https://madefor.earth/work",
-    },
     { name: "newsletter", href: "https://buttondown.email/madeforearth" },
   ],
-  contribute: [
+  api: [
     {
-      name: "help translate",
-      href: "mailto:will@madefor.earth?subject=MFE → Help Translate Glossary",
+      name: "analytics ↗",
+      href: "https://umami.tinyfactories.space/share/pg7iWgUS/API",
     },
     {
-      name: "add term",
-      href: "mailto:will@madefor.earth?subject=MFE → New Term for Glossary",
+      name: "docs ↗",
+      href: "https://docs.madefor.earth",
     },
     {
-      name: "GitHub ↗",
-      href: "https://github.com/orgs/tiny-factories/teams/made-for-earth",
+      name: "changelog ↗",
+      href: "https://mdfrearth.tiny.garden",
+    },
+    {
+      name: "Open Issues ↗",
+      href: "https://github.com/tiny-factories/mfe-api/issues",
     },
   ],
   social: [
     {
       name: "Twitter ↗",
-      href: "https://twitter.com/madeforearth1",
+      href: "https://twitter.com/mdfrearth",
     },
     {
       name: "Are.na  ↗",
@@ -41,7 +44,7 @@ const navigation = {
     },
     {
       name: "GitHub ↗",
-      href: "https://github.com/tiny-factories/climate-dictionary",
+      href: "https://github.com/tiny-factories/mfe-api",
     },
   ],
 };
@@ -54,7 +57,7 @@ export default function Example() {
           <div className="...">
             <div className="font-bold">
               By{" "}
-              <Link href="/blog/hello-world">
+              <Link href="https://tinyfactories.space">
                 <a className="underline underline-offset-2">Tiny Factories</a>
               </Link>
             </div>
@@ -77,8 +80,8 @@ export default function Example() {
             ))}
           </div>
           <div className="...">
-            <div className="font-bold">Contribute</div>
-            {navigation.contribute.map((item) => (
+            <div className="font-bold">API</div>
+            {navigation.api.map((item) => (
               <div key={item.name} className="py-2 lowercase">
                 <a
                   href={item.href}

@@ -9,7 +9,6 @@ export type SearchProps = {
 const navigation = [
   { name: "Data", href: "/data" },
   { name: "Sources", href: "/sources" },
-  { name: "Explorer", href: "/explorer" },
 ];
 
 export default function Navigation() {

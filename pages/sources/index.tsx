@@ -1,17 +1,41 @@
-import React from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import Layout from "../../components/Layout";
 import Source, { SourceProps } from "../../components/Source";
 import { makeSerializable } from "../../lib/util";
 import prisma from "../../lib/prisma";
+import useDebounce from "../../hooks/useDebounce";
 
 type Props = {
   feedSources: SourceProps[];
 };
 
 const SourcesPage: React.FC<Props> = (props) => {
-  console.log(props);
+  const [notices, setNotices] = useState<Notice[]>([]);
+  const [search, setSearch] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const debouncedSearch = useDebounce(search, 500);
+
+  useEffect(() => {
+    // search the api
+
+    async function fetchData() {
+      setLoading(true);
+
+      setNotices([]);
+
+      const data = await fetch(
+        `/api/nextSearch?searchString=${debouncedSearch}`
+      ).then((res) => res.json());
+      setNotices(data);
+      setLoading(false);
+    }
+
+    if (debouncedSearch) fetchData();
+  }, [debouncedSearch]);
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -35,7 +59,21 @@ const SourcesPage: React.FC<Props> = (props) => {
         </div>
       </div>
       {/* Search Section */}
-      <div className="my-9 p-9 col-span-2 ">Search</div>
+      <div className="p-9 col-span-2 ">
+        <label htmlFor="search" className="sr-only">
+          Search
+        </label>
+        <div className="relative">
+          <input
+            id="search"
+            name="search"
+            className="block w-full rounded-md border-none focus:border-gray-300 bg-[#E9E9E9] text-sm placeholder-gray-500 "
+            placeholder="Search for terms, agencies, treaties, emissions … "
+            type="search"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      </div>
 
       <div className="my-9 col-span-2 border-t bg-black-200">
         <div className="flex flex-flex-wrap justify-between">

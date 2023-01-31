@@ -85,7 +85,7 @@ const DataPage: React.FC<Props> = (props) => {
             </div>
           </Link>
         </div>
-        <table className="min-w-full divide-y divide-gray-300">
+        {/* <table className="min-w-full divide-y divide-gray-300">
           <thead className="bg-gray-50">
             <tr>
               <th
@@ -140,7 +140,7 @@ const DataPage: React.FC<Props> = (props) => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
       </div>
       <div className="my-9 col-span-2 border-t bg-black-200">
         <div className="flex flex-flex-wrap justify-between">

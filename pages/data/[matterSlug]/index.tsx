@@ -185,7 +185,7 @@ const DataPoint: React.FC<Props> = (props) => {
               <div className="font-bold">
                 OPPS! Looks like we had an issue loading the data. Please try to
                 refresh the page and{" "}
-                <Link href="/blog/hello-world">
+                <Link href="#">
                   <a className="underline underline-offset-2">contact us</a>
                 </Link>{" "}
                 if the issue persists.
