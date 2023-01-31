@@ -79,7 +79,7 @@ export default function Example() {
           <div className="...">
             <div className="font-bold">Contribute</div>
             {navigation.contribute.map((item) => (
-              <div key={item.name} className="py-2">
+              <div key={item.name} className="py-2 lowercase">
                 <a
                   href={item.href}
                   className="text-base text-gray-500 hover:text-gray-900"
@@ -92,7 +92,7 @@ export default function Example() {
           <div className="...">
             <div className="font-bold">Social</div>
             {navigation.social.map((item) => (
-              <div key={item.name} className="py-2">
+              <div key={item.name} className="py-2 lowercase">
                 <a
                   href={item.href}
                   className="text-base text-gray-500 hover:text-gray-900"
