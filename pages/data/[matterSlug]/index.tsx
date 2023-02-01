@@ -186,7 +186,7 @@ const DataPoint: React.FC<Props> = (props) => {
                 OPPS! Looks like we had an issue loading the data. Please try to
                 refresh the page and{" "}
                 <Link href="#">
-                  <a className="underline underline-offset-2">contact us</a>
+                  <div className="underline underline-offset-2">contact us</div>
                 </Link>{" "}
                 if the issue persists.
               </div>

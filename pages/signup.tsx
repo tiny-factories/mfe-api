@@ -45,9 +45,9 @@ const SignUp: React.FC = () => {
             type="submit"
             value="Signup"
           />
-          <a className="back" href="#" onClick={() => Router.push('/')}>
+          <div className="back" href="#" onClick={() => Router.push('/')}>
             or Cancel
-        </a>
+        </div>
         </form>
       </div>
       <style jsx>{`

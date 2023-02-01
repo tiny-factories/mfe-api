@@ -395,7 +395,7 @@ const Home: NextPage = (props) => {
           onSubmit="window.open('https://newsletter.madefor.earth', 'popupwindow')"
           className="flex flex-flex-wrap justify-between items-center"
         >
-          <label for="bd-email" className="">
+          <label htmlFor="bd-email" className="">
             Subscrube for updates on our API
           </label>
           <input

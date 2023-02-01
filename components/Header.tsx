@@ -11,20 +11,20 @@ const Header: React.FC = () => {
     <nav>
       <div className="left">
         <Link href="/">
-          <a className="bold" data-active={isActive("/")}>
+          <div className="bold" data-active={isActive("/")}>
             api made for earth
-          </a>
+          </div>
         </Link>
         {/* <Link href="/drafts">
-          <a data-active={isActive("/drafts")}>Drafts</a>
+          <div data-active={isActive("/drafts")}>Drafts</div>
         </Link> */}
       </div>
       {/* <div className="right">
         <Link href="/signup">
-          <a data-active={isActive('/signup')}>Signup</a>
+          <div data-active={isActive('/signup')}>Signup</div>
         </Link>
         <Link href="/create">
-          <a data-active={isActive('/create')}>+ Create draft</a>
+          <div data-active={isActive('/create')}>+ Create draft</div>
         </Link>
       </div> */}
       <style jsx>{`

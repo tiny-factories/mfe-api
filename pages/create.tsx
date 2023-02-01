@@ -66,9 +66,9 @@ const Draft: React.FC = () => {
             type="submit"
             value="Create"
           />
-          <a className="back" href="#" onClick={() => Router.push("/")}>
+          <div className="back" href="#" onClick={() => Router.push("/")}>
             or Cancel
-          </a>
+          </div>
         </form>
       </div>
       <style jsx>{`

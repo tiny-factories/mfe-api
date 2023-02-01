@@ -139,7 +139,7 @@ const SourcesPage: React.FC<Props> = (props) => {
         <div className="text-center font-bold">Our dat</div>
         <div className="text-h4">
           <Link href="https://madefor.earth">
-            <a className="font-bold hover:underline">We</a>
+            <div className="font-bold hover:underline">We</div>
           </Link>{" "}
           Our data comes from a verisy of public instaduation and private
           partinerships. So that we can ...

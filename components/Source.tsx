@@ -28,12 +28,12 @@ const Sources: React.FC<{ data: SourcesProps }> = ({ data }) => {
       <div>
         {data.websiteHref && (
           <Link href={data.websiteHref}>
-            <a>Website ↗</a>
+            <div>Website ↗</div>
           </Link>
         )}
         {data.dataHref && (
           <Link href={data.dataHref}>
-            <a>Data ↗</a>
+            <div>Data ↗</div>
           </Link>
         )}
       </div>

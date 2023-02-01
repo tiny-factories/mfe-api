@@ -23,9 +23,9 @@ export default function Navigation() {
           <div className="flex">
             <div className="flex flex-shrink-0 items-center">
               <Link href="/">
-                <a className="font-bold hover:underline">
+                <div className="font-bold hover:underline">
                   <span className="">API.</span>
-                </a>
+                </div>
               </Link>
             </div>
           </div>
@@ -43,7 +43,7 @@ export default function Navigation() {
             {navigation.map((item) => (
               <div key={item.name} className="flex flex-shrink-0 items-center">
                 <Link href={item.href}>
-                  <a className=" hover:underline pr-3">{item.name}</a>
+                  <div className=" hover:underline pr-3">{item.name}</div>
                 </Link>
               </div>
             ))}
