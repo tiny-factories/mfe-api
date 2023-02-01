@@ -63,6 +63,7 @@ model Matter {
 model Account {
   id                 Int     @id @default(autoincrement())
   userId             Int     @map("user_id")
+  password           String
   type               String
   provider           String
   providerAccountId  String  @map("provider_account_id")
@@ -138,5 +139,4 @@ model Profile {
   userId Int     @unique
   user   User    @relation(fields: [userId], references: [id])
 }
-
 
