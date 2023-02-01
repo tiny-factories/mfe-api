@@ -200,6 +200,11 @@ const Home: NextPage = (props) => {
                 <div className=" font-bold uppercase font-mono ">→</div>
               </Link>
             </div>
+            <div className="">
+              We maintain a list of internal and external earth science datasets
+              for use with internal tools you can find below, or avaible through
+              our api.
+            </div>
           </div>
           <div className="p-4 border border-2 rounded hover:cursor-pointer hover:bg-[#343339] hover:text-[#DADCE0]">
             <div className="flex flex-flex-wrap justify-between ">
@@ -208,6 +213,10 @@ const Home: NextPage = (props) => {
               <Link href="/data">
                 <div className=" font-bold uppercase font-mono ">→</div>
               </Link>
+            </div>
+            <div className="">
+              Search through sources bopth public and private to find the data
+              you need.
             </div>
           </div>
         </div>
@@ -250,6 +259,10 @@ const Home: NextPage = (props) => {
               <Link href="/data">
                 <div className="font-bold uppercase font-mono">→</div>
               </Link>
+            </div>
+            <div className="">
+              Create awareness by adding a banner to your website, github, or
+              ...
             </div>
           </div>
         </div>
@@ -317,7 +330,14 @@ const Home: NextPage = (props) => {
             </div>
             <div className="￼">$0.00</div>
 
-            <div className="￼"></div>
+            <div className="￼">
+              <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
 
             <div className="￼"></div>
 
@@ -383,7 +403,7 @@ const Home: NextPage = (props) => {
             name="email"
             id="bd-email"
             placeholder="hello@madefor.earth"
-            className="grow outline-none border-0 underline underline-offset-2 bg-[#DADCE0] mx-4"
+            className="grow outline-none border-0 underline underline-offset-2 bg-[#] mx-4"
           />
           <input type="submit" value="→" />
           <input type="hidden" name="tag" value="API → Feature Updates" />
