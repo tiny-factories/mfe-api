@@ -4,7 +4,7 @@ import EmailProvider from "next-auth/providers/email";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { Client } from "postmark";
 
-import { prisma } from "./prisma";
+import prisma from "../lib/prisma";
 import { siteConfig } from "../config/site";
 
 const postmarkClient = new Client(process.env.POSTMARK_API_TOKEN);

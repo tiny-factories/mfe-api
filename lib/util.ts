@@ -1,8 +1,23 @@
+import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
-// Make an object serializable to JSON.
-//
-// Useful to convert an object which may contain non-serializeable data such as
-// Dates to an object that doesn't
-export function makeSerializable<T extends any> (o: T): T {
-    return JSON.parse(JSON.stringify(o))
+export function makeSerializable<T extends any>(o: T): T {
+  return JSON.parse(JSON.stringify(o));
+}
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+export function formatDate(input: string | number): string {
+  const date = new Date(input);
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+export function absoluteUrl(path: string) {
+  return `${process.env.NEXT_PUBLIC_APP_URL}${path}`;
 }

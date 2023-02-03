@@ -1,19 +1,16 @@
 import { redirect } from "next/navigation";
-import { cache } from "react";
 
-import { prisma } from "../../lib/prisma";
-import { getCurrentUser } from "../../lib/sessions";
-import { User } from "@prisma/client";
+import { getServerSession } from "next-auth/next";
+
 import { authOptions } from "../../lib/auth";
 import Layout from "../../components/Layout";
-import SignOut from "../../components/sign-out";
 
 export default async function AccountPage() {
-  const user = await getCurrentUser();
+  const user = await getServerSession();
 
-  // if (!user) {
-  //   redirect(authOptions.pages.signIn);
-  // }
+  if (!user) {
+    redirect(authOptions.pages.signIn);
+  }
   return (
     <Layout>
       <div className="border-t-2">
