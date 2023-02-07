@@ -11,6 +11,7 @@ model Data {
   id                      String    @id @default(cuid())
   measurement             String?
   title                   String?
+  meta                    Json?
   unit                    Unit?     @relation(fields: [unitId], references: [id])
   unitId                  String?
   source                  Source?   @relation(fields: [sourceId], references: [id])
@@ -159,5 +160,3 @@ model License {
   dataPoints   Data[]
 
 }
-
-
