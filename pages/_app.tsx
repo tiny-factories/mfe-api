@@ -16,7 +16,7 @@ function MyApp({
   const [supabaseClient] = useState(() => createBrowserSupabaseClient());
 
   return (
-    <div className="bg-black">
+    <div className="">
       <SessionContextProvider supabaseClient={supabaseClient}>
         <MyUserContextProvider>
           <Layout>

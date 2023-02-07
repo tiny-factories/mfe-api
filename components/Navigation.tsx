@@ -73,7 +73,7 @@ export default function Navigation() {
             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=50&h=50&q=80"
             alt=""
             /> */}
-                      I
+                      Account
                     </Menu.Button>
                   </div>
                   <Transition
@@ -99,7 +99,6 @@ export default function Navigation() {
                           </a>
                         )}
                       </Menu.Item>
-
                       <Menu.Item>
                         {({ active }) => (
                           <span
@@ -116,8 +115,8 @@ export default function Navigation() {
                   </Transition>
                 </Menu>
               ) : (
-                <Link href="/signin">
-                  <div>Sign in</div>
+                <Link href="/account">
+                  <div>Account</div>
                 </Link>
               )}
             </div>

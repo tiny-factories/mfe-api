@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Layout from "../../../components/Layout";
+import { CSVLink, CSVDownload } from "react-csv";
 import { DataProps } from "../../../components/Data";
 // import MyResponsiveLine from "../../../components/MyResponsiveLine";
 import Map from "../../../components/Map";
@@ -140,6 +140,17 @@ const DataPoint: React.FC<Props> = (props) => {
   const { matterSlug } = router.query;
   var result = props.feed.filter((d) => d.matterSlug === `${matterSlug}`);
 
+  const headers = [
+    { label: "First Name", key: "firstname" },
+    { label: "Last Name", key: "lastname" },
+    { label: "Email", key: "email" },
+  ];
+
+  const data = [
+    { firstname: "Ahmed", lastname: "Tomi", email: "ah@smthing.co.com" },
+    { firstname: "Raed", lastname: "Labes", email: "rl@smthing.co.com" },
+    { firstname: "Yezzi", lastname: "Min l3b", email: "ymin@cocococo.com" },
+  ];
   return (
     <>
       <div className="grid grid-cols-4 gap-4">
@@ -148,14 +159,17 @@ const DataPoint: React.FC<Props> = (props) => {
           {/* <div className="">{description}</div> */}
         </div>
         <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
+          <CSVLink data={data} headers={headers}>
+            Download me
+          </CSVLink>{" "}
           {/* <MyResponsiveLine data={result} filter="" /> */}
         </div>
-        <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
+        {/* <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
           02
         </div>
         <div className="col-span-2 h-96 rounded border bg-black-200">
-          <Map />
-        </div>
+           <Map /> 
+        </div> */}
 
         <div className="col-span-4 min-h-96 rounded border bg-black-200">
           <div className="flex flex-wrap justify-between border-b">

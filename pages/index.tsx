@@ -121,7 +121,7 @@ const Home: NextPage = (props) => {
               <div className="p-3  items-center">
                 <div className="">N₂O</div>{" "}
                 <div className="font-bold">
-                  {props.atmosphericReadings[2].n2o.measurement}???{" "}
+                  {props.atmosphericReadings[2].n2o.measurement}?ppb{" "}
                 </div>
               </div>
             )}
@@ -138,7 +138,7 @@ const Home: NextPage = (props) => {
               <div className="p-3  items-center">
                 <div className="">SF₆</div>{" "}
                 <div className="font-bold">
-                  {props.atmosphericReadings[3].sf6.measurement}???{" "}
+                  {props.atmosphericReadings[3].sf6.measurement}ppt{" "}
                 </div>
               </div>
             )}

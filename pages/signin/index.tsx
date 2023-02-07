@@ -30,7 +30,12 @@ export default function AccountPage() {
           </div>
         ) : (
           <>
-            <h3>Account</h3>
+            <span
+              onClick={async () => {
+                await supabaseClient.auth.signOut();
+                router.push("/");
+              }}
+            ></span>
           </>
         )}
       </div>
