@@ -37,7 +37,7 @@ const SourcesPage: React.FC<Props> = (props) => {
   }, [debouncedSearch]);
 
   return (
-    <Layout>
+    <>
       {/* Hero Section */}
       <div className="my-9 p-9 col-span-2 rounded border bg-[#C4E3FF]">
         <div className="grid sm:grid-cols-2 gap-4">
@@ -164,7 +164,7 @@ const SourcesPage: React.FC<Props> = (props) => {
           ))}
         </div>
       </div> */}
-    </Layout>
+    </>
   );
 };
 

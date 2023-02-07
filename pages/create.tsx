@@ -23,7 +23,7 @@ const Draft: React.FC = () => {
   };
 
   return (
-    <Layout>
+    <>
       <div>
         <form onSubmit={submitData}>
           <h1>Create Draft</h1>
@@ -99,7 +99,7 @@ const Draft: React.FC = () => {
           margin-left: 1rem;
         }
       `}</style>
-    </Layout>
+    </>
   );
 };
 

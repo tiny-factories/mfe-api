@@ -11,7 +11,7 @@ type Props = {
 
 const Drafts: React.FC<Props> = (props) => {
   return (
-    <Layout>
+    <>
       <div className="page">
         <h1>Drafts</h1>
         <main>
@@ -36,7 +36,7 @@ const Drafts: React.FC<Props> = (props) => {
           margin-top: 2rem;
         }
       `}</style>
-    </Layout>
+    </>
   );
 };
 

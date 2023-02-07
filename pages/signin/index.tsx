@@ -4,11 +4,11 @@ import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Account from "../../components/Account";
 import Layout from "../../components/Layout";
 
-export default function Login() {
+export default function AccountPage() {
   const session = useSession();
   const supabase = useSupabaseClient();
   return (
-    <Layout>
+    <>
       <div className="container" style={{ padding: "50px 0 100px 0" }}>
         {!session ? (
           <div className="row">
@@ -31,10 +31,9 @@ export default function Login() {
         ) : (
           <>
             <h3>Account</h3>
-            <Account session={session} />
           </>
         )}
       </div>
-    </Layout>
+    </>
   );
 }

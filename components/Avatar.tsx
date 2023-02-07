@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Database } from "../utils/database.types";
 type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
@@ -19,6 +20,7 @@ export default function Avatar({
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
+    //eslint-disable-next-line
     if (url) downloadImage(url);
   }, [url]);
 
@@ -72,7 +74,7 @@ export default function Avatar({
   return (
     <div>
       {avatarUrl ? (
-        <img
+        <Image
           src={avatarUrl}
           alt="Avatar"
           className="avatar image"

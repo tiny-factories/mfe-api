@@ -141,7 +141,7 @@ const DataPoint: React.FC<Props> = (props) => {
   var result = props.feed.filter((d) => d.matterSlug === `${matterSlug}`);
 
   return (
-    <Layout>
+    <>
       <div className="grid grid-cols-4 gap-4">
         <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
           <div className="text-lg font-bold">{matterSlug}</div>
@@ -194,7 +194,7 @@ const DataPoint: React.FC<Props> = (props) => {
           )}
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

@@ -18,36 +18,36 @@ export default function Account({ session }: { session: Session }) {
   const [avatar_url, setAvatarUrl] = useState<Profiles["avatar_url"]>(null);
 
   useEffect(() => {
+    async function getProfile() {
+      try {
+        setLoading(true);
+        if (!user) throw new Error("No user");
+
+        let { data, error, status } = await supabase
+          .from("profiles")
+          .select(`username, website, avatar_url`)
+          .eq("id", user.id)
+          .single();
+
+        if (error && status !== 406) {
+          throw error;
+        }
+
+        if (data) {
+          setUsername(data.username);
+          setWebsite(data.website);
+          setAvatarUrl(data.avatar_url);
+        }
+      } catch (error) {
+        // alert("Error loading user data!");
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
     getProfile();
   }, [session]);
-
-  async function getProfile() {
-    try {
-      setLoading(true);
-      if (!user) throw new Error("No user");
-
-      let { data, error, status } = await supabase
-        .from("profiles")
-        .select(`username, website, avatar_url`)
-        .eq("id", user.id)
-        .single();
-
-      if (error && status !== 406) {
-        throw error;
-      }
-
-      if (data) {
-        setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
-      }
-    } catch (error) {
-      alert("Error loading user data!");
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   async function updateProfile({
     username,
@@ -72,9 +72,9 @@ export default function Account({ session }: { session: Session }) {
 
       let { error } = await supabase.from("profiles").upsert(updates);
       if (error) throw error;
-      alert("Profile updated!");
+      // alert("Profile updated!");
     } catch (error) {
-      alert("Error updating the data!");
+      // alert("Error updating the data!");
       console.log(error);
     } finally {
       setLoading(false);

@@ -58,7 +58,7 @@ const Home: NextPage = (props) => {
   // console.log(selectedOption);
 
   return (
-    <Layout>
+    <>
       <div className="my-9 col-span-2 h-fit">
         <div className="md:text-subTitle font-bold uppercase">
           increasing aucess to
@@ -409,7 +409,7 @@ const Home: NextPage = (props) => {
           <input type="hidden" name="tag" value="API → Feature Updates" />
         </form>
       </div>
-    </Layout>
+    </>
   );
 };
 

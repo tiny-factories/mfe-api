@@ -14,6 +14,7 @@ const navigation = {
       href: "https://madefor.earth/support",
     },
     { name: "newsletter", href: "https://buttondown.email/madeforearth" },
+    { name: "manage account ↗", href: "https://account.madefor.earth" },
   ],
   api: [
     {

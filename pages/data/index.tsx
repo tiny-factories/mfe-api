@@ -13,7 +13,7 @@ type Props = {
 
 const DataPage: React.FC<Props> = (props) => {
   return (
-    <Layout>
+    <>
       <div className="my-9 col-span-2 rounded border bg-black-200">
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="">
@@ -178,7 +178,7 @@ const DataPage: React.FC<Props> = (props) => {
           ))}
         </div>
       </div> */}
-    </Layout>
+    </>
   );
 };
 
