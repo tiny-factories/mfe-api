@@ -13,10 +13,7 @@ export type SearchProps = {
   title: string;
 };
 
-const navigation = [
-  { name: "Data", href: "/data" },
-  { name: "Sources", href: "/sources" },
-];
+const navigation = [{ name: "Data", href: "/data" }];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -64,7 +61,7 @@ export default function Navigation() {
             ))}
             <div className="flex flex-1 justify-end space-x-8">
               {user ? (
-                <Menu as="div" className="relative ml-3">
+                <Menu as="div" className="relative">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
@@ -88,15 +85,16 @@ export default function Navigation() {
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="/a"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Account
-                          </a>
+                          <Link href="/a">
+                            <div
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Settings
+                            </div>
+                          </Link>
                         )}
                       </Menu.Item>
                       <Menu.Item>
@@ -106,6 +104,10 @@ export default function Navigation() {
                               await supabaseClient.auth.signOut();
                               router.push("/signin");
                             }}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Sign out
                           </span>

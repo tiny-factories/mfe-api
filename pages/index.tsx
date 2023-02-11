@@ -60,7 +60,7 @@ const Home: NextPage = (props) => {
   return (
     <>
       <div className="my-9 col-span-2 h-fit">
-        <div className="md:text-subTitle font-bold uppercase">
+        <div className="md:text-subTitle font-medium uppercase">
           increasing aucess to
         </div>
         <div className="text-sectionTitle md:text-title font-bold">
