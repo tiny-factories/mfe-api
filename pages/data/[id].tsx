@@ -3,15 +3,16 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { CSVLink, CSVDownload } from "react-csv";
-import { DataProps } from "../../../components/Data";
+import { DataProps, matterPageDataProps } from "../../components/Data";
 // import MyResponsiveLine from "../../../components/MyResponsiveLine";
-import Map from "../../../components/Map";
 
-import { makeSerializable } from "../../../lib/util";
-import prisma from "../../../lib/prisma";
+import { makeSerializable } from "../../lib/util";
+
+import prisma from "../../lib/prisma";
 
 type Props = {
   feed: DataProps[];
+  pageData: matterPageDataProps[];
 };
 
 // const lineChartData = [
@@ -114,6 +115,13 @@ const ProductTable = (props, lineChartData) => {
               Date Measured
             </button>
           </th>
+          <th
+            scope="col"
+            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+          >
+            {" "}
+            <button>Details </button>
+          </th>
         </tr>
       </thead>
       <tbody className="divide-y divide-gray-200 bg-white">
@@ -126,7 +134,12 @@ const ProductTable = (props, lineChartData) => {
               {item.unit}
             </td>
             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-              {item.measuredAt}
+              {item.measuredAt.split("T")[0]}
+            </td>
+            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+              <Link href="`${item.id}`">
+                <div>Details →</div>
+              </Link>
             </td>
           </tr>
         ))}
@@ -138,6 +151,8 @@ const ProductTable = (props, lineChartData) => {
 const DataPoint: React.FC<Props> = (props) => {
   const router = useRouter();
   const { matterSlug } = router.query;
+
+  //This filter is redundant based on the getServerProps
   var result = props.feed.filter((d) => d.matterSlug === `${matterSlug}`);
 
   const headers = [
@@ -151,62 +166,46 @@ const DataPoint: React.FC<Props> = (props) => {
     { firstname: "Raed", lastname: "Labes", email: "rl@smthing.co.com" },
     { firstname: "Yezzi", lastname: "Min l3b", email: "ymin@cocococo.com" },
   ];
+  console.log(JSON.stringify(props.feed));
+
   return (
     <>
       <div className="grid grid-cols-4 gap-4">
-        <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
-          <div className="text-lg font-bold">{matterSlug}</div>
-          {/* <div className="">{description}</div> */}
+        <div className="col-span-4 h-96 my-9 p-9 rounded border-2">
+          <div className="font-bold uppercase text-sectionTitle">
+            {props?.pageData[0]?.name || "Unknown Matter"}
+          </div>
+
+          <div className="">BookMark Icon</div>
         </div>
-        <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
-          <CSVLink data={data} headers={headers}>
+
+        <div className="col-span-4 border-t-4 bg-black-200">
+          <div className="uppercase font-bold">
+            <div className="text-sectionTitle">Data</div>
+          </div>
+          <div>
+            {" "}
+            <ProductTable products={props.feed} />
+            {!result.length && (
+              <>
+                <div className="font-bold">
+                  OPPS! Looks like we had an issue loading the data. Please try
+                  to refresh the page and{" "}
+                  <Link href="#">
+                    <div className="underline underline-offset-2">
+                      contact us
+                    </div>
+                  </Link>{" "}
+                  if the issue persists.
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* <CSVLink data={data} headers={headers}>
             Download me
-          </CSVLink>{" "}
-          {/* <MyResponsiveLine data={result} filter="" /> */}
-        </div>
-        {/* <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
-          02
-        </div>
-        <div className="col-span-2 h-96 rounded border bg-black-200">
-           <Map /> 
-        </div> */}
-
-        <div className="col-span-4 min-h-96 rounded border bg-black-200">
-          <div className="flex flex-wrap justify-between border-b">
-            <div className="pl-2">Choose timespand</div>
-
-            <div className="">Yearly</div>
-            <div className="">Monthly</div>
-            <div className="pr-2">Weekly</div>
-          </div>
-          <ProductTable products={result} />
-        </div>
-      </div>
-      <div>
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="mt-8 flex flex-col">
-            <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-              <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          {!result.length && (
-            <>
-              <div className="font-bold">
-                OPPS! Looks like we had an issue loading the data. Please try to
-                refresh the page and{" "}
-                <Link href="#">
-                  <div className="underline underline-offset-2">contact us</div>
-                </Link>{" "}
-                if the issue persists.
-              </div>
-            </>
-          )}
-        </div>
+          </CSVLink>{" "} */}
       </div>
     </>
   );
@@ -214,15 +213,31 @@ const DataPoint: React.FC<Props> = (props) => {
 
 // lookup data on  matter here
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   // Should move matterSlug filter to here to reduce the client load
   const feed = await prisma.data.findMany({
-    where: { published: true },
+    where: {
+      published: true,
+      matterSlug: {
+        endsWith: String(params?.id),
+      },
+    },
   });
+  const pageData = await prisma.matter.findMany({
+    where: {
+      published: true,
+      slug: {
+        endsWith: String(params?.id),
+      },
+    },
+  });
+  // FIX: Need to pass in page slug or matterId to endsWith prisma perimeter
   return {
-    props: { feed: makeSerializable(feed) },
+    props: {
+      feed: makeSerializable(feed),
+      pageData: makeSerializable(pageData),
+    },
   };
-  // Clean 'result' data for the Line Chart
 };
 
 export default DataPoint;
