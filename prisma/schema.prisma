@@ -14,7 +14,6 @@ model Data {
   meta                    Json?
   unit                    Unit?     @relation(fields: [unitId], references: [id])
   unitId                  String?
-  unitSlug                Unit?     @relation(fields: [unitslug], references: [slug])
   source                  Source?   @relation(fields: [sourceId], references: [id])
   sourceId                String?
   license                 License?  @relation(fields: [licenseId], references: [id])
@@ -53,16 +52,15 @@ model Location {
 }
 
 model Matter {
-  id             String  @id @default(cuid())
+  id             String   @id @default(cuid())
   name           String
   abbreviation   String?
   description    String?
   glossaryMfeApi String?
-  slug           String  @unique
-  published      Boolean @default(false)
-
-  dataPoints  Data[]
-  dataSources Source[]
+  slug           String   @unique
+  published      Boolean  @default(false)
+  dataPoints     Data[]
+  dataSources    Source[]
 
 }
 
@@ -165,3 +163,4 @@ model License {
   dataPoints   Data[]
 
 }
+

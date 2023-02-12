@@ -166,7 +166,7 @@ const DataPoint: React.FC<Props> = (props) => {
     { firstname: "Raed", lastname: "Labes", email: "rl@smthing.co.com" },
     { firstname: "Yezzi", lastname: "Min l3b", email: "ymin@cocococo.com" },
   ];
-  console.log(JSON.stringify(props.feed));
+  // console.log(JSON.stringify(props.feed));
 
   return (
     <>
