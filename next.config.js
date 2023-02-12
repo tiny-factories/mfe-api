@@ -1,5 +1,11 @@
-module.exports = {
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
+  reactStrictMode: true,
   experimental: {
+    appDir: true,
+    serverComponentsExternalPackages: ["prisma", "@prisma/client"],
     urlImports: [
       "https://framer.com/m/",
       "https://framerusercontent.com/",
@@ -11,3 +17,5 @@ module.exports = {
     ignoreBuildErrors: true,
   },
 };
+
+module.exports = nextConfig;

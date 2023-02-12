@@ -37,7 +37,7 @@ const SourcesPage: React.FC<Props> = (props) => {
   }, [debouncedSearch]);
 
   return (
-    <Layout>
+    <>
       {/* Hero Section */}
       <div className="my-9 p-9 col-span-2 rounded border bg-[#C4E3FF]">
         <div className="grid sm:grid-cols-2 gap-4">
@@ -59,7 +59,7 @@ const SourcesPage: React.FC<Props> = (props) => {
         </div>
       </div>
       {/* Search Section */}
-      <div className="p-9 col-span-2 ">
+      {/* <div className="p-9 col-span-2 ">
         <label htmlFor="search" className="sr-only">
           Search
         </label>
@@ -73,21 +73,15 @@ const SourcesPage: React.FC<Props> = (props) => {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-      </div>
+      </div> */}
 
       <div className="my-9 col-span-2 border-t bg-black-200">
         <div className="flex flex-flex-wrap justify-between">
           <div className="text-sectionTitle font-bold uppercase">
-            Today’s atmopheric readings
+            Source List
           </div>
-
-          <Link href="/data">
-            <div className="text-sectionTitle font-bold uppercase font-mono transform-gpu hover:translate-x-2">
-              →
-            </div>
-          </Link>
         </div>
-        <table className="min-w-full divide-y divide-gray-300">
+        <table className=" divide-gray-300">
           <thead className="bg-gray-50">
             <tr>
               <th
@@ -100,19 +94,19 @@ const SourcesPage: React.FC<Props> = (props) => {
                 scope="col"
                 className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
               >
-                Title
-              </th>
-              <th
-                scope="col"
-                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-              >
                 Website
               </th>
               <th
                 scope="col"
                 className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
               >
-                Profile
+                Data Site
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+              >
+                Local
               </th>
               <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                 <span className="sr-only">Edit</span>
@@ -125,9 +119,15 @@ const SourcesPage: React.FC<Props> = (props) => {
                 <td className="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                   {data.name}
                 </td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
-                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
+                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  {data.name}
+                </td>
+                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  {data.name}
+                </td>
+                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  {data.name}
+                </td>
                 <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"></td>
               </tr>
             ))}
@@ -139,7 +139,7 @@ const SourcesPage: React.FC<Props> = (props) => {
         <div className="text-center font-bold">Our dat</div>
         <div className="text-h4">
           <Link href="https://madefor.earth">
-            <a className="font-bold hover:underline">We</a>
+            <div className="font-bold hover:underline">We</div>
           </Link>{" "}
           Our data comes from a verisy of public instaduation and private
           partinerships. So that we can ...
@@ -164,12 +164,14 @@ const SourcesPage: React.FC<Props> = (props) => {
           ))}
         </div>
       </div> */}
-    </Layout>
+    </>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const allSources = await prisma.source.findMany({});
+  const allSources = await prisma.source.findMany({
+    where: { published: true },
+  });
   return {
     props: { feedSources: makeSerializable(allSources) },
   };

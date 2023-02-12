@@ -11,10 +11,13 @@ model Data {
   id                      String    @id @default(cuid())
   measurement             String?
   title                   String?
+  meta                    Json?
   unit                    Unit?     @relation(fields: [unitId], references: [id])
   unitId                  String?
   source                  Source?   @relation(fields: [sourceId], references: [id])
   sourceId                String?
+  license                 License?  @relation(fields: [licenseId], references: [id])
+  licenseId               String?
   matter                  Matter?   @relation(fields: [matterSlug], references: [slug])
   matterSlug              String?
   published               Boolean   @default(false)
@@ -24,7 +27,7 @@ model Data {
   createdAt               DateTime  @default(now()) @map(name: "created_at")
   updatedAt               DateTime  @updatedAt @map(name: "updated_at")
   author                  User?     @relation(fields: [authorId], references: [id])
-  authorId                Int?
+  authorId                String?
   internallyGeneratedData Boolean   @default(false)
   internallyHostedData    Boolean   @default(false)
 }
@@ -55,6 +58,7 @@ model Matter {
   description    String?
   glossaryMfeApi String?
   slug           String   @unique
+  published      Boolean  @default(false)
   dataPoints     Data[]
   dataSources    Source[]
 
@@ -62,7 +66,8 @@ model Matter {
 
 model Account {
   id                 Int     @id @default(autoincrement())
-  userId             Int     @map("user_id")
+  userId             String  @map("user_id")
+  password           String
   type               String
   provider           String
   providerAccountId  String  @map("provider_account_id")
@@ -85,7 +90,7 @@ model Account {
 model Session {
   id           Int      @id @default(autoincrement())
   sessionToken String   @unique @map("session_token")
-  userId       Int      @map("user_id")
+  userId       String   @map("user_id")
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -93,10 +98,12 @@ model Session {
 }
 
 model User {
-  id            Int       @id @default(autoincrement())
+  id            String    @id @default(cuid())
   name          String?
+  username      String?
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
+  password      String
   image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
@@ -104,6 +111,11 @@ model User {
   accounts      Account[]
   sessions      Session[]
   profile       Profile?
+
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
 
   @@map(name: "users")
 }
@@ -113,9 +125,11 @@ model Source {
   name           String?
   abbreviation   String?
   description    String?
+  slug           String?  @unique
   websiteHref    String?
   dataHref       String?
   image          String?
+  published      Boolean  @default(false)
   createdAt      DateTime @default(now()) @map(name: "created_at")
   updatedAt      DateTime @updatedAt @map(name: "updated_at")
   datas          Data[]
@@ -135,8 +149,18 @@ model VerificationToken {
 model Profile {
   id     Int     @id @default(autoincrement())
   bio    String?
-  userId Int     @unique
+  userId String  @unique
   user   User    @relation(fields: [userId], references: [id])
 }
 
+model License {
+  id           String  @id @default(cuid())
+  name         String
+  abbreviation String?
+  description  String?
+  url          String?
+  slug         String  @unique
+  dataPoints   Data[]
+
+}
 

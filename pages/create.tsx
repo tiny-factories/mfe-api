@@ -23,7 +23,7 @@ const Draft: React.FC = () => {
   };
 
   return (
-    <Layout>
+    <>
       <div>
         <form onSubmit={submitData}>
           <h1>Create Draft</h1>
@@ -66,9 +66,9 @@ const Draft: React.FC = () => {
             type="submit"
             value="Create"
           />
-          <a className="back" href="#" onClick={() => Router.push("/")}>
+          <div className="back" href="#" onClick={() => Router.push("/")}>
             or Cancel
-          </a>
+          </div>
         </form>
       </div>
       <style jsx>{`
@@ -99,7 +99,7 @@ const Draft: React.FC = () => {
           margin-left: 1rem;
         }
       `}</style>
-    </Layout>
+    </>
   );
 };
 

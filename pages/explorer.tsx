@@ -10,11 +10,11 @@ import { ChevronRightIcon, StarIcon } from "@heroicons/react/20/solid";
 
 const Home: NextPage = () => {
   return (
-    <Layout>
+    <>
       <title>API Made For Earth</title>
       <meta property="og:image" content="https://api.madefor.earth/api/og" />
       <div>Its a map</div>
-    </Layout>
+    </>
   );
 };
 

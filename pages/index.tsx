@@ -58,9 +58,9 @@ const Home: NextPage = (props) => {
   // console.log(selectedOption);
 
   return (
-    <Layout>
+    <>
       <div className="my-9 col-span-2 h-fit">
-        <div className="md:text-subTitle font-bold uppercase">
+        <div className="md:text-subTitle font-medium uppercase">
           increasing aucess to
         </div>
         <div className="text-sectionTitle md:text-title font-bold">
@@ -121,7 +121,7 @@ const Home: NextPage = (props) => {
               <div className="p-3  items-center">
                 <div className="">N₂O</div>{" "}
                 <div className="font-bold">
-                  {props.atmosphericReadings[2].n2o.measurement}???{" "}
+                  {props.atmosphericReadings[2].n2o.measurement}?ppb{" "}
                 </div>
               </div>
             )}
@@ -138,7 +138,7 @@ const Home: NextPage = (props) => {
               <div className="p-3  items-center">
                 <div className="">SF₆</div>{" "}
                 <div className="font-bold">
-                  {props.atmosphericReadings[3].sf6.measurement}???{" "}
+                  {props.atmosphericReadings[3].sf6.measurement}ppt{" "}
                 </div>
               </div>
             )}
@@ -395,7 +395,7 @@ const Home: NextPage = (props) => {
           onSubmit="window.open('https://newsletter.madefor.earth', 'popupwindow')"
           className="flex flex-flex-wrap justify-between items-center"
         >
-          <label for="bd-email" className="">
+          <label htmlFor="bd-email" className="">
             Subscrube for updates on our API
           </label>
           <input
@@ -409,7 +409,7 @@ const Home: NextPage = (props) => {
           <input type="hidden" name="tag" value="API → Feature Updates" />
         </form>
       </div>
-    </Layout>
+    </>
   );
 };
 

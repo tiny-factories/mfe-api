@@ -17,7 +17,7 @@ const DataPoint: React.FC<Props> = (props) => {
 
   // could filter here but thats till pulling all the ddata?
   return (
-    <Layout>
+    <>
       <div>
         <div className="text-lg font-bold">{matterSlug}</div>
         <div>Some Kinda Filter</div>
@@ -35,7 +35,7 @@ const DataPoint: React.FC<Props> = (props) => {
           )}
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

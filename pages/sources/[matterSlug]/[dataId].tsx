@@ -14,7 +14,7 @@ const DataPoint: React.FC<DataProps> = (props) => {
   // }
 
   return (
-    <Layout>
+    <>
       <div>
         <div>Basic Data</div>
         <div>Graph Component</div>
@@ -48,7 +48,7 @@ const DataPoint: React.FC<DataProps> = (props) => {
           margin-left: 1rem;
         }
       `}</style>
-    </Layout>
+    </>
   );
 };
 

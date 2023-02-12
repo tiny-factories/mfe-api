@@ -17,6 +17,13 @@ export type DataProps = {
   matterSlug: string;
   published: boolean;
 };
+export type matterPageDataProps = {
+  id: number;
+  name: string;
+  abbreviation: string;
+  description: string;
+  slug: string;
+};
 
 const Data: React.FC<{ data: DataProps }> = ({ data }) => {
   const unitAbbrevation = data.unit ? data.unit.abbrevation : "unit unknown";
