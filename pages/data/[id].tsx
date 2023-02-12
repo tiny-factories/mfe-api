@@ -11,7 +11,7 @@ import { makeSerializable } from "../../lib/util";
 import prisma from "../../lib/prisma";
 
 type Props = {
-  feed: DataProps[];
+  datapointData: DataProps[];
   pageData: matterPageDataProps[];
 };
 
@@ -153,7 +153,9 @@ const DataPoint: React.FC<Props> = (props) => {
   const { matterSlug } = router.query;
 
   //This filter is redundant based on the getServerProps
-  var result = props.feed.filter((d) => d.matterSlug === `${matterSlug}`);
+  var result = props.datapointData.filter(
+    (d) => d.matterSlug === `${matterSlug}`
+  );
 
   const headers = [
     { label: "First Name", key: "firstname" },
@@ -166,7 +168,7 @@ const DataPoint: React.FC<Props> = (props) => {
     { firstname: "Raed", lastname: "Labes", email: "rl@smthing.co.com" },
     { firstname: "Yezzi", lastname: "Min l3b", email: "ymin@cocococo.com" },
   ];
-  // console.log(JSON.stringify(props.feed));
+  // console.log(JSON.stringify(props.datapointData));
 
   return (
     <>
@@ -185,7 +187,7 @@ const DataPoint: React.FC<Props> = (props) => {
           </div>
           <div>
             {" "}
-            <ProductTable products={props.feed} />
+            <ProductTable products={props.datapointData} />
             {!result.length && (
               <>
                 <div className="font-bold">
@@ -215,7 +217,7 @@ const DataPoint: React.FC<Props> = (props) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   // Should move matterSlug filter to here to reduce the client load
-  const feed = await prisma.data.findMany({
+  const datapointData = await prisma.data.findMany({
     where: {
       published: true,
       matterSlug: {
@@ -231,11 +233,15 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       },
     },
   });
+  const unitData = await prisma.unit.findMany({
+    where: {},
+  });
   // FIX: Need to pass in page slug or matterId to endsWith prisma perimeter
   return {
     props: {
-      feed: makeSerializable(feed),
+      datapointData: makeSerializable(datapointData),
       pageData: makeSerializable(pageData),
+      unitData: makeSerializable(unitData),
     },
   };
 };
