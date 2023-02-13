@@ -8,9 +8,9 @@ function Pagination({ items, pageSize, currentPage, onPageChange }) {
 
   return (
     <div>
-      <ul>
+      <ul className="flex flex-wrap">
         {pages.map((page) => (
-          <li key={page}>
+          <li key={page} className="pr-4">
             <div onClick={() => onPageChange(page)}>{page}</div>
           </li>
         ))}
