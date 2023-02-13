@@ -44,9 +44,7 @@ const ProductTable = (props, lineChartData) => {
     return sortConfig.key === measurement ? sortConfig.direction : undefined;
   };
   return (
-    <table className="min-w-full divide-y divide-gray-300">
-      {/* <caption>Products</caption> */}
-
+    <table className="col-span-4 min-w-full divide-y divide-gray-300">
       <thead className="bg-gray-50">
         <tr>
           <th
@@ -97,6 +95,7 @@ const ProductTable = (props, lineChartData) => {
           </th>
         </tr>
       </thead>
+
       <tbody className="divide-y divide-gray-200 bg-white">
         {items.map((item, i) => (
           <tr key={i}>
@@ -136,11 +135,11 @@ export default function DataList({ subtitle, title, data }) {
       <div className="grid sm:grid-cols-4 gap-4">
         {!data.length ? (
           <>
-            <div className="font-bold">
-              OPPS! Looks like we had an issue loading the data. Please try to
+            <div className="col-span-4 font-bold">
+              OPPS! Looks like we had an issue loading {title}. Please try to
               refresh the page and{" "}
-              <Link href="#">
-                <div className="underline underline-offset-2">contact us</div>
+              <Link href="#" className="underline underline-offset-2">
+                contact us
               </Link>{" "}
               if the issue persists.
             </div>

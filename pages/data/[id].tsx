@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { GetServerSideProps } from "next";
 import { CSVLink, CSVDownload } from "react-csv";
+import { paginate } from "../../utils/paginate";
+
 import { DataProps, matterPageDataProps } from "../../components/Data";
+import Pagination from "../../components/Pagination";
 import DataGallery from "../../components/DataGallery";
 import DataList from "../../components/DataList";
 import BookmarkToggle from "../../components/ToggleBookmark";
@@ -16,6 +19,14 @@ type Props = {
 };
 
 const DataPoint: React.FC<Props> = (props) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const paginatedPosts = paginate(props.datapointData, currentPage, pageSize);
   //This filter is redundant based on the getServerProps
 
   //   const headers = [
@@ -56,7 +67,17 @@ const DataPoint: React.FC<Props> = (props) => {
           title="datasets"
           data={props.datapointData}
         />
-        <DataList subtitle="" title="Carbon data" data={props.datapointData} />
+        <DataList subtitle="" title="Carbon data" data={paginatedPosts} />
+
+        {/* Load Current pages */}
+
+        {/* Page Picker */}
+        <Pagination
+          items={props.datapointData.length} // 100
+          currentPage={currentPage} // 1
+          pageSize={pageSize} // 10
+          onPageChange={onPageChange}
+        />
 
         <DataGallery
           subtitle="related data"
