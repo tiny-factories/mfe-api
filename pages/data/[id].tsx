@@ -7,7 +7,9 @@ import { DataProps, matterPageDataProps } from "../../components/Data";
 import Pagination from "../../components/Pagination";
 import DataGallery from "../../components/DataGallery";
 import DataList from "../../components/DataList";
+import Section from "../../components/Section";
 import BookmarkToggle from "../../components/ToggleBookmark";
+import BarChart from "../../components/NivoBar";
 
 import { makeSerializable } from "../../lib/util";
 
@@ -61,15 +63,27 @@ const DataPoint: React.FC<Props> = (props) => {
             {props?.pageData[0]?.description || "Unknown Matter"}
           </div>
         </div>
-        <DataGallery subtitle="" title="" data={props.datapointData} />
+        <Section
+          subtitle="Timetraveling through the"
+          title={`Decades of ${props?.pageData[0]?.abbreviation}`}
+        >
+          <div className="col-span-1">
+            <div className="">Today</div>
+
+            <div className="">Last Year</div>
+
+            <div className="">Last Decade</div>
+          </div>
+          <div className="col-span-3 h-screen">
+            <BarChart lableXAxis="X" lableyAxis="Y" key="" tdata="" />
+          </div>
+        </Section>
         <DataGallery
           subtitle="related"
           title="datasets"
           data={props.datapointData}
         />
         <DataList subtitle="" title="Carbon data" data={paginatedPosts} />
-
-        {/* Load Current pages */}
 
         {/* Page Picker */}
         <Pagination
