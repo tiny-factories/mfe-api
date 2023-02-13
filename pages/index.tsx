@@ -27,7 +27,6 @@ const options = [
 export const getStaticProps: GetStaticProps = async () => {
   const apiToday = await fetch("http://api.madefor.earth/api/today");
   const todaysatmosphericReadings = await apiToday.json();
-
   let atmosphericReadings = Object.values(todaysatmosphericReadings);
 
   return {

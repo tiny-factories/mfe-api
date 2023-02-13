@@ -73,20 +73,4 @@ export default async function handle(
   todayData.push({ sf6: allSf6Data[0] });
 
   res.json(todayData);
-
-  // old
-
-  // const newArray = allUsers
-  //   .sort((a, b) => b.measuredAt - a.measuredAt)
-  //   .map((item) => ({
-  //     [item.measuredAt]: [item.measurement],
-  //   }));
-
-  //   const t3Array = [];
-  //
-  //   t3Array.push(newArray[0]);
-  //   t3Array.push(newArray[1]);
-  //   t3Array.push(newArray[9]);
-  //
-  //   res.json(t3Array);
 }

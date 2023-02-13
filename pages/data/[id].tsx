@@ -10,6 +10,7 @@ import DataList from "../../components/DataList";
 import Section from "../../components/Section";
 import BookmarkToggle from "../../components/ToggleBookmark";
 import BarChart from "../../components/NivoBar";
+import Stats from "../../components/Stats";
 
 import { makeSerializable } from "../../lib/util";
 
@@ -29,6 +30,9 @@ const DataPoint: React.FC<Props> = (props) => {
   };
 
   const paginatedPosts = paginate(props.datapointData, currentPage, pageSize);
+
+  //sort data by date
+
   //This filter is redundant based on the getServerProps
 
   //   const headers = [
@@ -67,15 +71,21 @@ const DataPoint: React.FC<Props> = (props) => {
           subtitle="Timetraveling through the"
           title={`Decades of ${props?.pageData[0]?.abbreviation}`}
         >
-          <div className="col-span-1">
-            <div className="">Today</div>
-
-            <div className="">Last Year</div>
-
-            <div className="">Last Decade</div>
-          </div>
-          <div className="col-span-3 h-screen">
-            <BarChart lableXAxis="X" lableyAxis="Y" key="" tdata="" />
+          <Stats data={props.datapointData} />
+          <div className="col-span-4 md:col-span-3 h-96">
+            {!props.datapointData.length ? (
+              <>Looks like we dont have any data for this chart!</>
+            ) : (
+              <>
+                {" "}
+                <BarChart
+                  lableXAxis="X"
+                  lableYAxis="Y"
+                  key=""
+                  data={props.datapointData}
+                />
+              </>
+            )}
           </div>
         </Section>
         <DataGallery
@@ -112,6 +122,9 @@ const DataPoint: React.FC<Props> = (props) => {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   // Should move matterSlug filter to here to reduce the client load
   const datapointData = await prisma.data.findMany({
+    orderBy: {
+      measuredAt: "asc",
+    },
     where: {
       published: true,
       matterSlug: {
