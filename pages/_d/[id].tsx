@@ -31,22 +31,9 @@ const DataPoint: React.FC<Props> = (props) => {
 
   const paginatedPosts = paginate(props.datapointData, currentPage, pageSize);
 
-  //sort data by date
-
-  //This filter is redundant based on the getServerProps
-
-  //   const headers = [
-  //     { label: "First Name", key: "firstname" },
-  //     { label: "Last Name", key: "lastname" },
-  //     { label: "Email", key: "email" },
-  //   ];
-  //
-  //   const data = [
-  //     { firstname: "Ahmed", lastname: "Tomi", email: "ah@smthing.co.com" },
-  //     { firstname: "Raed", lastname: "Labes", email: "rl@smthing.co.com" },
-  //     { firstname: "Yezzi", lastname: "Min l3b", email: "ymin@cocococo.com" },
-  //   ];
-  // console.log(JSON.stringify(props.datapointData));
+  // QUESTION: Feels like there is a better way to handle reversing the data array for the Stats component
+  const dataPointDec = props.datapointData;
+  const dataPointAsc = props.datapointData.reverse();
 
   return (
     <>
@@ -71,7 +58,7 @@ const DataPoint: React.FC<Props> = (props) => {
           subtitle="Timetraveling through the"
           title={`Decades of ${props?.pageData[0]?.abbreviation}`}
         >
-          <Stats data={props.datapointData} />
+          <Stats data={dataPointAsc} />
           <div className="col-span-4 md:col-span-3 h-96">
             {!props.datapointData.length ? (
               <>Looks like we dont have any data for this chart!</>
@@ -82,7 +69,7 @@ const DataPoint: React.FC<Props> = (props) => {
                   lableXAxis="X"
                   lableYAxis="Y"
                   key=""
-                  data={props.datapointData}
+                  data={dataPointDec}
                 />
               </>
             )}
