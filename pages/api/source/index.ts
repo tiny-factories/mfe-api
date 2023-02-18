@@ -1,12 +1,12 @@
 import { NextApiResponse, NextApiRequest } from "next";
-import { Data } from "../../../interfaces";
+import { Source } from "../../../interfaces";
 import prisma from "../../../lib/prisma";
 
 export default async function handler(
   _req: NextApiRequest,
-  res: NextApiResponse<Data[]>
+  res: NextApiResponse<Source[]>
 ) {
-  const people = await prisma.data.findMany();
+  const sources = await prisma.source.findMany();
 
-  return res.status(200).json(people);
+  return res.status(200).json(sources);
 }

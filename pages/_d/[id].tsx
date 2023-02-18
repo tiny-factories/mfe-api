@@ -22,6 +22,7 @@ type Props = {
 };
 
 const DataPoint: React.FC<Props> = (props) => {
+  console.log(props);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
 
