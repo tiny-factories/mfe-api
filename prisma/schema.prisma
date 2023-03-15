@@ -10,27 +10,27 @@ datasource db {
 model Data {
   id                      String    @id @default(cuid())
   measurement             String?
-  title                   String?
-  meta                    Json?
-  unit                    Unit?     @relation(fields: [unitId], references: [id])
   unitId                  String?
-  source                  Source?   @relation(fields: [sourceId], references: [id])
   sourceId                String?
-  license                 License?  @relation(fields: [licenseId], references: [id])
-  licenseId               String?
-  matter                  Matter?   @relation(fields: [matterSlug], references: [slug])
-  matterSlug              String?
-  matterId                String?
   published               Boolean   @default(false)
-  location                Location? @relation(fields: [locationId], references: [id])
-  locationId              String?
-  measuredAt              DateTime  @default(now()) @map(name: "measured_at")
-  createdAt               DateTime  @default(now()) @map(name: "created_at")
-  updatedAt               DateTime  @updatedAt @map(name: "updated_at")
-  author                  User?     @relation(fields: [authorId], references: [id])
+  createdAt               DateTime  @default(now()) @map("created_at")
+  updatedAt               DateTime  @updatedAt @map("updated_at")
   authorId                String?
+  locationId              String?
+  measuredAt              DateTime  @default(now()) @map("measured_at")
+  matterSlug              String?
   internallyGeneratedData Boolean   @default(false)
   internallyHostedData    Boolean   @default(false)
+  title                   String?
+  licenseId               String?
+  meta                    Json?
+  matterId                String?
+  author                  User?     @relation(fields: [authorId], references: [id])
+  license                 License?  @relation(fields: [licenseId], references: [id])
+  location                Location? @relation(fields: [locationId], references: [id])
+  matter                  Matter?   @relation(fields: [matterSlug], references: [slug])
+  source                  Source?   @relation(fields: [sourceId], references: [id])
+  unit                    Unit?     @relation(fields: [unitId], references: [id])
 }
 
 model Unit {
@@ -48,27 +48,24 @@ model Location {
   long    String?
   lat     String?
   slug    String?
-
-  data Data[]
+  data    Data[]
 }
 
 model Matter {
   id             String   @id @default(cuid())
   name           String
   abbreviation   String?
+  slug           String   @unique
   description    String?
   glossaryMfeApi String?
-  slug           String   @unique
   published      Boolean  @default(false)
   dataPoints     Data[]
-  dataSources    Source[]
-
+  dataSources    Source[] @relation("MatterToSource")
 }
 
 model Account {
   id                 Int     @id @default(autoincrement())
   userId             String  @map("user_id")
-  password           String
   type               String
   provider           String
   providerAccountId  String  @map("provider_account_id")
@@ -81,8 +78,8 @@ model Account {
   session_state      String?
   oauth_token_secret String?
   oauth_token        String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  password           String
+  user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
@@ -99,43 +96,41 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  username      String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  password      String
-  image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  datas         Data[]
-  accounts      Account[]
-  sessions      Session[]
-  profile       Profile?
+  id                     String    @id @default(cuid())
+  name                   String?
+  email                  String?   @unique
+  emailVerified          DateTime? @map("email_verified")
+  image                  String?
+  createdAt              DateTime  @default(now()) @map("created_at")
+  updatedAt              DateTime  @updatedAt @map("updated_at")
+  password               String
+  username               String?
+  stripeCurrentPeriodEnd DateTime? @map("stripe_current_period_end")
+  stripeCustomerId       String?   @unique @map("stripe_customer_id")
+  stripePriceId          String?   @map("stripe_price_id")
+  stripeSubscriptionId   String?   @unique @map("stripe_subscription_id")
+  datas                  Data[]
+  profile                Profile?
+  accounts               Account[]
+  sessions               Session[]
 
-  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
-  stripePriceId          String?   @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
-
-  @@map(name: "users")
+  @@map("users")
 }
 
 model Source {
   id             String   @id @default(cuid())
   name           String?
   abbreviation   String?
-  description    String?
-  slug           String?  @unique
-  websiteHref    String?
-  dataHref       String?
   image          String?
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+  dataHref       String?
+  description    String?
+  websiteHref    String?
   published      Boolean  @default(false)
-  createdAt      DateTime @default(now()) @map(name: "created_at")
-  updatedAt      DateTime @updatedAt @map(name: "updated_at")
+  slug           String?  @unique
   datas          Data[]
-  thingsMeasured Matter[]
-
+  thingsMeasured Matter[] @relation("MatterToSource")
 }
 
 model VerificationToken {
@@ -159,9 +154,7 @@ model License {
   name         String
   abbreviation String?
   description  String?
-  url          String?
   slug         String  @unique
+  url          String?
   dataPoints   Data[]
-
 }
-

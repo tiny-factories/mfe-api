@@ -22,6 +22,7 @@ type Props = {
 };
 
 const DataPoint: React.FC<Props> = (props) => {
+  console.log(props);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
 
@@ -106,52 +107,36 @@ const DataPoint: React.FC<Props> = (props) => {
 
 // lookup data on  matter here
 
-// export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-//   const res = await fetch("api/matter/co2");
-//   const data: Data = await res.json();
-//
-//   // Should move matterSlug filter to here to reduce the client load
-//   // const datapointData = await prisma.data.findMany({
-//   //   orderBy: {
-//   //     measuredAt: "asc",
-//   //   },
-//   //   where: {
-//   //     published: true,
-//   //     matterSlug: {
-//   //       endsWith: String(params?.id),
-//   //     },
-//   //   },
-//   // });
-//   // const pageData = await prisma.matter.findMany({
-//   //   where: {
-//   //     published: true,
-//   //     slug: {
-//   //       endsWith: String(params?.id),
-//   //     },
-//   //   },
-//   // });
-//   // const unitData = await prisma.unit.findMany({
-//   //   where: {},
-//   // });
-//   // FIX: Need to pass in page slug or matterId to endsWith prisma perimeter
-//   return {
-//     props: {
-//       datapointData: makeSerializable(datapointData),
-//       pageData: makeSerializable(pageData),
-//       unitData: makeSerializable(unitData),
-//     },
-//   };
-// };
-
-export const getServerSideProps: GetServerSideProps<{ data: Data }> = async (
-  context
-) => {
-  const res = await fetch("/api/matter/co2");
-  const data: Data = await res.json();
-
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  // Should move matterSlug filter to here to reduce the client load
+  const datapointData = await prisma.data.findMany({
+    orderBy: {
+      measuredAt: "asc",
+    },
+    where: {
+      published: true,
+      matterSlug: {
+        endsWith: String(params?.id),
+      },
+    },
+  });
+  const pageData = await prisma.matter.findMany({
+    where: {
+      published: true,
+      slug: {
+        endsWith: String(params?.id),
+      },
+    },
+  });
+  const unitData = await prisma.unit.findMany({
+    where: {},
+  });
+  // FIX: Need to pass in page slug or matterId to endsWith prisma perimeter
   return {
     props: {
-      data,
+      datapointData: makeSerializable(datapointData),
+      pageData: makeSerializable(pageData),
+      unitData: makeSerializable(unitData),
     },
   };
 };
