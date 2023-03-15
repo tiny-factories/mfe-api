@@ -310,7 +310,7 @@ const Home: NextPage = (props) => {
       </div> */}
 
       {/*Pricing Info*/}
-      <div className="my-9 p-9 col-span-2 rounded border bg-[#343339] text-[#DADCE0]">
+      {/* <div className="my-9 p-9 col-span-2 rounded border bg-[#343339] text-[#DADCE0]">
         <div className="uppercase font-bold">Supporting our Team</div>
         <div className="text-subTitle md:text-sectionTitle font-bold uppercase">
           Pricing
@@ -363,7 +363,7 @@ const Home: NextPage = (props) => {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* <div className="my-9 col-span-2 border-t-2 bg-black-200">
         <div className="flex flex-flex-wrap justify-between">

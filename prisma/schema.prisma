@@ -19,7 +19,6 @@ model Data {
   license                 License?  @relation(fields: [licenseId], references: [id])
   licenseId               String?
   matter                  Matter?   @relation(fields: [matterSlug], references: [slug])
-  matter                  Matter?   @relation(fields: [matterId], references: [id])
   matterSlug              String?
   matterId                String?
   published               Boolean   @default(false)
@@ -165,3 +164,4 @@ model License {
   dataPoints   Data[]
 
 }
+
