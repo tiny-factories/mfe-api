@@ -42,7 +42,7 @@ const SourcesPage: React.FC<Props> = (props) => {
       {/* Hero Section */}
       <SectionHero
         subtitle="Proident duis"
-        title="Sources"
+        title="licences"
         description="Proident duis nulla id aute amet duis ullamco do qui qui labore. Cupidatat culpa consectetur cillum qui exercitation cupidatat laboris commodo pariatur est ea veniam."
       />
       {/* Search Section */}

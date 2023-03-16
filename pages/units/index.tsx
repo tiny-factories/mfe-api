@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
-import Link from "next/link";
 import SectionHero from "../../components/SectionHero";
+import Link from "next/link";
 import Layout from "../../components/Layout";
 import Source, { SourceProps } from "../../components/Source";
 import { makeSerializable } from "../../lib/util";
@@ -42,9 +42,10 @@ const SourcesPage: React.FC<Props> = (props) => {
       {/* Hero Section */}
       <SectionHero
         subtitle="Proident duis"
-        title="Sources"
+        title="Licences"
         description="Proident duis nulla id aute amet duis ullamco do qui qui labore. Cupidatat culpa consectetur cillum qui exercitation cupidatat laboris commodo pariatur est ea veniam."
       />
+
       {/* Search Section */}
       {/* <div className="p-9 col-span-2 ">
         <label htmlFor="search" className="sr-only">
