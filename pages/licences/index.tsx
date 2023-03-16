@@ -16,7 +16,7 @@ const LicencesPage: React.FC<Props> = (props) => {
       {/* Hero Section */}
       <SectionHero
         subtitle="Proident duis"
-        title="Sources"
+        title="licences"
         description="Proident duis nulla id aute amet duis ullamco do qui qui labore. Cupidatat culpa consectetur cillum qui exercitation cupidatat laboris commodo pariatur est ea veniam."
       />
       {/* Search Section */}
@@ -43,11 +43,11 @@ const LicencesPage: React.FC<Props> = (props) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const allUnits = await prisma.unit.findMany({
+  const allLicences = await prisma.license.findMany({
     where: {},
   });
   return {
-    props: { data: makeSerializable(allUnits) },
+    props: { data: makeSerializable(allLicences) },
   };
 };
 

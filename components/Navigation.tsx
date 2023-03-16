@@ -13,7 +13,12 @@ export type SearchProps = {
   title: string;
 };
 
-const navigation = [{ name: "Data", href: "/data" }];
+const navigation = [
+  { name: "Data", href: "/data" },
+  { name: "_L", href: "/licences" },
+  { name: "_S", href: "/sources" },
+  { name: "_U", href: "/units" },
+];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
