@@ -4,8 +4,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Layout from "../../../components/Layout";
 import { DataProps } from "../../../components/Data";
-// import MyResponsiveLine from "../../../components/MyResponsiveLine";
-import Map from "../../../components/Map";
 
 import { makeSerializable } from "../../../lib/util";
 import prisma from "../../../lib/prisma";
@@ -13,19 +11,6 @@ import prisma from "../../../lib/prisma";
 type Props = {
   feed: DataProps[];
 };
-
-// const lineChartData = [
-//   {
-//     id: "CO₂",
-//     color: "hsl(70, 70%, 50%)",
-//     data: [
-//       {
-//         x: "year",
-//         y: 300,
-//       },
-//     ],
-//   },
-// ];
 
 const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = React.useState(config);
@@ -142,32 +127,18 @@ const DataPoint: React.FC<Props> = (props) => {
 
   return (
     <Layout>
-      <div className="grid grid-cols-4 gap-4">
-        <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
-          <div className="text-lg font-bold">{matterSlug}</div>
-          {/* <div className="">{description}</div> */}
-        </div>
-        <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
-          {/* <MyResponsiveLine data={result} filter="" /> */}
-        </div>
-        <div className="col-span-2 h-96 p-9 rounded border bg-black-200">
-          02
-        </div>
-        <div className="col-span-2 h-96 rounded border bg-black-200">
-          <Map />
-        </div>
-
-        <div className="col-span-4 min-h-96 rounded border bg-black-200">
-          <div className="flex flex-wrap justify-between border-b">
-            <div className="pl-2">Choose timespand</div>
-
-            <div className="">Yearly</div>
-            <div className="">Monthly</div>
-            <div className="pr-2">Weekly</div>
+      <div className="bg-green text-tan rounded-lg w-full   font-sans">
+        <div className="mb-9 sm:p-9">
+          <div className="uppercase font-bold">ources foer </div>
+          <div className="uppercase font-bold text-h4 sm:text-h3 md:text-h1">
+            {matterSlug}
           </div>
-          <ProductTable products={result} />
+          <div className="">ources foer </div>
         </div>
       </div>
+      <div className="">table goes here </div>
+      <div className="">request data</div>
+
       <div>
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="mt-8 flex flex-col">

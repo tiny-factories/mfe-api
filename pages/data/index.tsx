@@ -13,9 +13,13 @@ type Props = {
 const DataPage: React.FC<Props> = (props) => {
   return (
     <Layout>
-      <div className="w-full mb-9 sm:py-9 text-h4 sm:text-h3 md:text-h1 font-sans">
-        <div className="text-center font-bold">Data </div>
-        <div>...</div>
+      <div className="bg-green text-tan rounded-lg w-full   font-sans">
+        <div className="mb-9 sm:p-9">
+          <div className="uppercase font-bold">ources foer </div>
+          <div className="uppercase font-bold text-h4 sm:text-h3 md:text-h1">
+            Data Types{" "}
+          </div>
+        </div>
       </div>
 
       <div>
@@ -26,7 +30,7 @@ const DataPage: React.FC<Props> = (props) => {
           {props.feed.map((data) => (
             <div
               key={data.id}
-              className="col-span-3 p-3 rounded border bg-black-200"
+              className="col-span-12 sm:col-span-6 md:col-span-4 p-3 rounded border bg-black-200"
             >
               {" "}
               <Matter data={data} />

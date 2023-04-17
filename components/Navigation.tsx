@@ -6,11 +6,7 @@ export type SearchProps = {
   title: string;
 };
 
-const navigation = [
-  { name: "Data", href: "/data" },
-  { name: "Sources", href: "/sources" },
-  { name: "Explorer", href: "/explorer" },
-];
+const navigation = [{ name: "Sources", href: "/sources" }];
 
 export default function Navigation() {
   return (
@@ -24,9 +20,10 @@ export default function Navigation() {
           <div className="flex">
             <div className="flex flex-shrink-0 items-center">
               <Link href="/">
-                <a className="font-bold hover:underline">
-                  <span className="">API.</span>
-                </a>
+                <div className="font-bold hover:underline">
+                  <span className="">DATA.</span>
+                  <span className="text-red-50">MadeFor.Earth</span>
+                </div>
               </Link>
             </div>
           </div>
