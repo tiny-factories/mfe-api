@@ -21,8 +21,7 @@ export default function Navigation() {
             <div className="flex flex-shrink-0 items-center">
               <Link href="/">
                 <div className="font-bold hover:underline">
-                  <span className="">DATA.</span>
-                  <span className="text-red-50">MadeFor.Earth</span>
+                  <span className="">Earth's API</span>
                 </div>
               </Link>
             </div>

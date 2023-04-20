@@ -63,7 +63,7 @@ export default async function handle(
     .map((item) => ({
       measurement: [item.measurement],
     }));
-  console.log(allSf6Data[0]);
+  // console.log(allSf6Data[0]);
 
   const todayData = [];
 

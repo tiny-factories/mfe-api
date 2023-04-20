@@ -11,7 +11,6 @@ type Props = {
 };
 
 const SourcesPage: React.FC<Props> = (props) => {
-  console.log(props);
   return (
     <Layout>
       <div className="w-full mb-9 sm:py-9 text-h4 sm:text-h3 md:text-h1 font-sans">
