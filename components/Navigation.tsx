@@ -6,7 +6,14 @@ export type SearchProps = {
   title: string;
 };
 
-const navigation = [{ name: "Sources", href: "/sources" }];
+const navigation = [
+  { name: "License", href: "/license" },
+  { name: "Measurement", href: "/measurement" },
+  { name: "Sensor", href: "/sensor" },
+  { name: "Source", href: "/source" },
+  { name: "Type", href: "/type" },
+  { name: "Unit", href: "/unit" },
+];
 
 export default function Navigation() {
   return (
@@ -15,7 +22,7 @@ export default function Navigation() {
         <title>Climate Glossary [a]</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="mx-auto py-1">
+      <div className="mx-auto pb-6">
         <div className="relative flex justify-between ">
           <div className="flex">
             <div className="flex flex-shrink-0 items-center">
