@@ -143,7 +143,11 @@ const Card: React.FC<{ data: MatterProps }> = ({ data }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const feed = await prisma.matter.findMany({});
+  const feed = await prisma.Collections.findMany({
+    where: {
+      published: true,
+    },
+  });
   return {
     props: { feed: makeSerializable(feed) },
   };
