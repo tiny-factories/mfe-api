@@ -97,7 +97,7 @@ const Card: React.FC<{ data: MatterProps }> = ({ data }) => {
       onClick={() => Router.push(`/data/${data.slug}`, `/data/${data.slug}`)}
     >
       <div className="font-bold">{data.name}</div>
-      <div>{data.name}</div>
+      <div>{data.measurement}</div>
       <div>sds</div>
     </div>
   );

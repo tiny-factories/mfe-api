@@ -8,24 +8,24 @@ datasource db {
 }
 
 model Measurements {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  measuredAt  DateTime @default(now()) @map("measured_at")
-  published   Boolean  @default(false)
+  id          String    @id @default(uuid())
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? @updatedAt
+  measuredAt  DateTime? @default(now()) @map("measured_at")
+  published   Boolean   @default(false)
   measurement String
 
-  source   Source @relation(fields: [sourceId], references: [id])
-  sourceId String
+  source   Source? @relation(fields: [sourceId], references: [id])
+  sourceId String?
 
-  unit   Unit   @relation(fields: [unitId], references: [id])
-  unitId String
+  unit   Unit?   @relation(fields: [unitId], references: [id])
+  unitId String?
 
-  type   Type   @relation(fields: [typeId], references: [id])
-  typeId String
+  type   Type?   @relation(fields: [typeId], references: [id])
+  typeId String?
 
-  sensor   Sensor @relation(fields: [sensorId], references: [id])
-  sensorId String
+  sensor   Sensor? @relation(fields: [sensorId], references: [id])
+  sensorId String?
 
   license   License? @relation(fields: [licenseId], references: [id])
   licenseId String?
@@ -45,6 +45,8 @@ model Collections {
   description  String?
   slug         String  @unique
   url          String?
+
+
 
   measurements Measurements[]
   Source       Source?        @relation(fields: [sourceId], references: [id])
@@ -67,6 +69,8 @@ model Source {
 
   measurements Measurements[]
   collections  Collections[]
+  Sensor       Sensor?        @relation(fields: [sensorId], references: [id])
+  sensorId     String?
 }
 
 model Type {
@@ -123,7 +127,10 @@ model Sensor {
   name         String
   abbreviation String?
   description  String?
+  slug         String? @unique
+  url          String?
 
   measurements Measurements[]
-}
+  source       Source[]
 
+}

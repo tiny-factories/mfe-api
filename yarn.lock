@@ -576,22 +576,22 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@prisma/client@4.5.0":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.5.0.tgz#f708549bee3da396d5741d846b4e4306b120210c"
-  integrity sha512-B2cV0OPI1smhdYUxsJoLYQLoMlLH06MUxgFUWQnHodGMX98VRVXKmQE/9OcrTNkqtke5RC+YU24Szxd04tZA2g==
+"@prisma/client@^4.13.0":
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.13.0.tgz#271d2b9756503ea17bbdb459c7995536cf2a6191"
+  integrity sha512-YaiiICcRB2hatxsbnfB66uWXjcRw3jsZdlAVxmx0cFcTc/Ad/sKdHCcWSnqyDX47vAewkjRFwiLwrOUjswVvmA==
   dependencies:
-    "@prisma/engines-version" "4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452"
+    "@prisma/engines-version" "4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a"
 
-"@prisma/engines-version@4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452":
-  version "4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452"
-  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-4.5.0-43.0362da9eebca54d94c8ef5edd3b2e90af99ba452.tgz#5b7fae294ee9bd9790d0e7b7a0b0912e4222ac08"
-  integrity sha512-o7LyVx8PPJBLrEzLl6lpxxk2D5VnlM4Fwmrbq0NoT6pr5aa1OuHD9ZG+WJY6TlR/iD9bhmo2LNcxddCMr5Rv2A==
+"@prisma/engines-version@4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a":
+  version "4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-4.13.0-50.1e7af066ee9cb95cf3a403c78d9aab3e6b04f37a.tgz#ae338908d11685dee50e7683502d75442b955bf9"
+  integrity sha512-fsQlbkhPJf08JOzKoyoD9atdUijuGBekwoOPZC3YOygXEml1MTtgXVpnUNchQlRSY82OQ6pSGQ9PxUe4arcSLQ==
 
-"@prisma/engines@4.5.0":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.5.0.tgz#82df347a893a5ae2a67707d44772ba181f4b9328"
-  integrity sha512-4t9ir2SbQQr/wMCNU4YpHWp5hU14J2m3wHUZnGJPpmBF8YtkisxyVyQsKd1e6FyLTaGq8LOLhm6VLYHKqKNm+g==
+"@prisma/engines@4.13.0":
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.13.0.tgz#582a6b90b6efeb0f465984f1fe0e72a4afaaa5ae"
+  integrity sha512-HrniowHRZXHuGT9XRgoXEaP2gJLXM5RMoItaY2PkjvuZ+iHc0Zjbm/302MB8YsPdWozAPHHn+jpFEcEn71OgPw==
 
 "@react-spring/animated@~9.4.5":
   version "9.4.5"
@@ -671,10 +671,10 @@
   dependencies:
     mini-svg-data-uri "^1.2.3"
 
-"@tailwindcss/line-clamp@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@tailwindcss/line-clamp/-/line-clamp-0.4.2.tgz#f353c5a8ab2c939c6267ac5b907f012e5ee130f9"
-  integrity sha512-HFzAQuqYCjyy/SX9sLGB1lroPzmcnWv1FHkIpmypte10hptf4oPUfucryMKovZh2u0uiS9U5Ty3GghWfEJGwVw==
+"@tailwindcss/line-clamp@^0.4.4":
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/line-clamp/-/line-clamp-0.4.4.tgz#767cf8e5d528a5d90c9740ca66eb079f5e87d423"
+  integrity sha512-5U6SY5z8N42VtrCrKlsTAA35gy2VSyYtHWCsg1H87NU1SXnEfekTVlrga9fzUDrrHcGi2Lb5KenUWb4lRQT5/g==
 
 "@tailwindcss/typography@^0.5.8":
   version "0.5.8"
@@ -3270,12 +3270,12 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prisma@4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.5.0.tgz#361ae3f4476d0821b97645e5da42975a7c2943bb"
-  integrity sha512-9Aeg4qiKlv9Wsjz4NO8k2CzRzlvS3A4FYVJ5+28sBBZ0eEwbiVOE/Jj7v6rZC1tFW2s4GSICQOAyuOjc6WsNew==
+prisma@^4.13.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-4.13.0.tgz#0b83f40acf50cd47d7463a135c4e9b275713e602"
+  integrity sha512-L9mqjnSmvWIRCYJ9mQkwCtj4+JDYYTdhoyo8hlsHNDXaZLh/b4hR0IoKIBbTKxZuyHQzLopb/+0Rvb69uGV7uA==
   dependencies:
-    "@prisma/engines" "4.5.0"
+    "@prisma/engines" "4.13.0"
 
 prop-types@^15.0.0, prop-types@^15.8.1:
   version "15.8.1"
