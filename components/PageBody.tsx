@@ -1,37 +1,25 @@
 import React, { ReactNode, useEffect, useState } from "react";
+import { GetServerSideProps } from "next";
+
+import { makeSerializable } from "../lib/util";
+import prisma from "../lib/prisma";
 
 import GalleryView from "./DataGalleryView";
 import TableView from "./DataTableView";
 
 import useDebounce from "../hooks/useDebounce";
 
-const posts = [
-  {
-    id: 1,
-    title: "Blog Post 1",
-    image: "/post-1.jpg",
-    description: "This is the first blog post.",
-  },
-  {
-    id: 2,
-    title: "Blog Post 2",
-    image: "/post-2.jpg",
-    description: "This is the second blog post.",
-  },
-  {
-    id: 3,
-    title: "Blog Post 3",
-    image: "/post-3.jpg",
-    description: "This is the third blog post.",
-  },
-];
-
-export default function SearchAndData({ data }) {
+export default function SearchAndData({ dataTable }) {
+  //For Search
   const [loading, setLoading] = React.useState(true);
-  const [notices, setNotices] = useState<Notice[]>([]);
-  const [view, setView] = useState("gallery");
-
+  const [results, setResults] = useState<Results[]>([]);
   const [search, setSearch] = useState<string | null>(null);
+  //For DataViews
+  const [view, setView] = useState("gallery");
+  //For Pagination
+  const [pageSize, setPageSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [tableCount, setTableCount] = useState();
 
   const debouncedSearch = useDebounce(search, 500);
 
@@ -39,23 +27,46 @@ export default function SearchAndData({ data }) {
     setView((prevView) => (prevView === "gallery" ? "list" : "gallery"));
   };
 
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // useEffect(() => {
+  //   fetchPosts();
+  // }, [currentPage, pageSize]);
+
   useEffect(() => {
-    // search the api
+    fetchData();
+  }, [debouncedSearch, currentPage, pageSize]);
 
-    async function fetchData() {
-      setLoading(true);
+  async function fetchData() {
+    setLoading(true);
+    setResults([]);
 
-      setNotices([]);
+    const data = await fetch(
+      `/api/test?&currentPage=${currentPage}&pageSize=${pageSize}`
+    ).then((res) => res.json());
+    setResults(data.tableData);
+    setTableCount(data.tableCount);
 
-      const data = await fetch(
-        `/api/search?searchString=${debouncedSearch}`
-      ).then((res) => res.json());
-      setNotices(data);
-      setLoading(false);
-    }
+    console.log(data);
+    setLoading(false);
+  }
 
-    if (debouncedSearch) fetchData();
-  }, [debouncedSearch]);
+  const Pagination = () => {
+    const pageCount = Math.ceil(tableCount / pageSize);
+    const pageNumbers = Array.from({ length: pageCount }, (_, i) => i + 1);
+
+    return (
+      <div>
+        {pageNumbers.map((pageNumber) => (
+          <button key={pageNumber} onClick={() => handlePageChange(pageNumber)}>
+            {pageNumber}
+          </button>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="">
@@ -85,9 +96,23 @@ export default function SearchAndData({ data }) {
             )}
           </div>
           {view === "gallery" ? (
-            <GalleryView data={posts} />
+            <>
+              {!search && (
+                <div>
+                  <GalleryView data={results} />
+                  <Pagination />
+                </div>
+              )}
+            </>
           ) : (
-            <TableView data={posts} />
+            <>
+              {!search && (
+                <div>
+                  <TableView data={results} />
+                  <Pagination />
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

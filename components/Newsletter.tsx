@@ -7,7 +7,7 @@ export default function Newsletter() {
           method="post"
           target="popupwindow"
           onSubmit="window.open('https://newsletter.madefor.earth', 'popupwindow')"
-          class="flex inline-block"
+          className="flex inline-block"
         >
           <label htmlFor="bd-email"></label>
           <div className="flex flex-grow rounded">

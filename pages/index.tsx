@@ -111,28 +111,6 @@ const HomePage: React.FC<Props> = (props) => {
               ))}
             </div>
           )}
-          <div className="grid grid-cols-12 gap-4">
-            {notices.map((data, i) => {
-              return (
-                <div
-                  key={i}
-                  className="col-span-12 sm:col-span-6 md:col-span-4 rounded borderbg-black"
-                >
-                  <Card data={data} />
-                </div>
-              );
-            })}
-            {/*  <div className="my-9 grid grid-cols-12 gap-4">
-              <div className="col-span-12 sm:col-span-6 md:col-span-4"> </div>
-              <Link href="#">
-                <div className="col-span-12 sm:col-span-6 md:col-span-4 p-3 font-bold bg-tan rounded text-green border-2 border-green hover:text-tan hover:bg-green uppercase">
-                  {" "}
-                  View All
-                </div>
-              </Link>
-              <div className="col-span-12 sm:col-span-6 md:col-span-4"> </div>
-            </div>*/}
-          </div>
         </div>
       </div>
 

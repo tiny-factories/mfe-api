@@ -5,13 +5,14 @@ import Layout from "../../components/Layout";
 import Hero from "../../components/PageHero";
 import SearchDataGrid from "../../components/PageBody";
 
+//DataResult Views
+
 import { makeSerializable } from "../../lib/util";
 import prisma from "../../lib/prisma";
 
 type Props = {};
 
 const Page: React.FC<Props> = (props) => {
-  console.log(props);
   return (
     <Layout>
       <Hero
@@ -27,8 +28,8 @@ const Page: React.FC<Props> = (props) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const feed = await prisma.Measurements.findMany({
-    skip: 40,
-    take: 10,
+    skip: 5,
+    take: 5,
     where: {
       published: true,
     },
