@@ -1,13 +1,9 @@
-import React, { ReactNode, useEffect, useState } from "react";
-import { GetServerSideProps } from "next";
+import React, { useEffect, useState } from "react";
 
 import {
   ArrowLongLeftIcon,
   ArrowLongRightIcon,
 } from "@heroicons/react/20/solid";
-
-import { makeSerializable } from "../lib/util";
-import prisma from "../lib/prisma";
 
 import GalleryView from "./DataGalleryView";
 import TableView from "./DataTableView";
@@ -25,7 +21,7 @@ export default function SearchAndData({ dataTable }) {
   //For Pagination
   const [pageSize, setPageSize] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [tableCount, setTableCount] = useState();
+  const [tableCount, setTableCount] = useState(0);
 
   const debouncedSearch = useDebounce(search, 500);
 
@@ -39,9 +35,9 @@ export default function SearchAndData({ dataTable }) {
 
   useEffect(() => {
     fetchData(dataTable);
-  }, [debouncedSearch, currentPage, pageSize, tableToSearch]);
+  }, [dataTable, debouncedSearch, currentPage, pageSize, tableToSearch]);
 
-  async function fetchData(table) {
+  async function fetchData(table: any) {
     setLoading(true);
     setResults([]);
     const data = await fetch(
