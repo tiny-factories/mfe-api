@@ -10,6 +10,7 @@ import TableView from "./DataTableView";
 import useDebounce from "../hooks/useDebounce";
 
 export default function SearchAndData({ dataTable }) {
+  const tableToSearch = dataTable;
   //For Search
   const [loading, setLoading] = React.useState(true);
   const [results, setResults] = useState<Results[]>([]);
@@ -31,20 +32,15 @@ export default function SearchAndData({ dataTable }) {
     setCurrentPage(pageNumber);
   };
 
-  // useEffect(() => {
-  //   fetchPosts();
-  // }, [currentPage, pageSize]);
-
   useEffect(() => {
-    fetchData();
-  }, [debouncedSearch, currentPage, pageSize]);
+    fetchData(dataTable);
+  }, [debouncedSearch, currentPage, pageSize, tableToSearch]);
 
-  async function fetchData() {
+  async function fetchData(table) {
     setLoading(true);
     setResults([]);
-
     const data = await fetch(
-      `/api/test?&currentPage=${currentPage}&pageSize=${pageSize}`
+      `/api/${table}?&currentPage=${currentPage}&pageSize=${pageSize}`
     ).then((res) => res.json());
     setResults(data.tableData);
     setTableCount(data.tableCount);

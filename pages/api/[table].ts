@@ -10,13 +10,13 @@ export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { searchString, currentPage, pageSize } = req.query;
+  const { table, searchString, currentPage, pageSize } = req.query;
 
-  const tableCount = await prisma.collections.count({
+  const tableCount = await prisma[table].count({
     where: { published: true },
   });
 
-  const tableData = await prisma.collections.findMany({
+  const tableData = await prisma[table].findMany({
     skip: (+currentPage - 1) * +pageSize,
     take: +pageSize,
     where: { published: true },
