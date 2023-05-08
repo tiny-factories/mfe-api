@@ -28,7 +28,7 @@ export default function Navigation() {
             <div className="flex flex-shrink-0 items-center">
               <Link href="/">
                 <div className="font-bold hover:underline hover:underline-offset-4 hover:decoration-2">
-                  <span className="uppercase">Earth's API</span>
+                  <span className="uppercase">Earth&aposs API</span>
                 </div>
               </Link>
             </div>
