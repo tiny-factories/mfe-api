@@ -1,14 +1,43 @@
 import React, { ReactNode, useEffect, useState } from "react";
 
+import GalleryView from "./DataGalleryView";
+import TableView from "./DataTableView";
+
 import useDebounce from "../hooks/useDebounce";
 
-export default function SearchDataGrid({ data }) {
+const posts = [
+  {
+    id: 1,
+    title: "Blog Post 1",
+    image: "/post-1.jpg",
+    description: "This is the first blog post.",
+  },
+  {
+    id: 2,
+    title: "Blog Post 2",
+    image: "/post-2.jpg",
+    description: "This is the second blog post.",
+  },
+  {
+    id: 3,
+    title: "Blog Post 3",
+    image: "/post-3.jpg",
+    description: "This is the third blog post.",
+  },
+];
+
+export default function SearchAndData({ data }) {
   const [loading, setLoading] = React.useState(true);
   const [notices, setNotices] = useState<Notice[]>([]);
+  const [view, setView] = useState("gallery");
 
   const [search, setSearch] = useState<string | null>(null);
 
   const debouncedSearch = useDebounce(search, 500);
+
+  const toggleView = () => {
+    setView((prevView) => (prevView === "gallery" ? "list" : "gallery"));
+  };
 
   useEffect(() => {
     // search the api
@@ -39,66 +68,29 @@ export default function SearchDataGrid({ data }) {
         Occaecat incididunt sunt est cillum deserunt et. Adipisicing veniam
         veniam est laborum laborum.
       </div>
-      <div className="">
-        <div className="w-full">
-          <label htmlFor="search" className="sr-only">
-            Search
-          </label>
-          <div className="relative">
-            {/* <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-           Icon
-         </div> */}
-            <input
-              id="search"
-              name="search"
-              className="block w-full rounded-md border-none focus:border-gray-300 bg-[#E9E9E9] text-sm placeholder-gray-500 "
-              placeholder="Search for terms, agencies, treaties, emissions … "
-              type="search"
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="">
-        {!search && (
-          <div className="grid grid-cols-12 gap-4">
-            {data.feed.map((data, i) => (
-              <div
-                key={i}
-                className="col-span-12 sm:col-span-6 md:col-span-4 p-3 rounded border bg-black-200"
-              >
-                <Card data={data} />
+      <div>
+        <div>
+          <div>
+            <button onClick={toggleView}>Toggle View</button>
+            {view === "gallery" ? (
+              <div>
+                <button onClick={toggleView}>List</button>
+                <button onClick={toggleView}>Gallery</button>
               </div>
-            ))}
-          </div>
-        )}
-        <div className="grid grid-cols-12 gap-4">
-          {notices.map((data, i) => {
-            return (
-              <div
-                key={i}
-                className="col-span-12 sm:col-span-6 md:col-span-4 p-3 rounded border bg-black-200"
-              >
-                <Card data={data} />
+            ) : (
+              <div>
+                <button onClick={toggleView}>List</button>
+                <button onClick={toggleView}>Gallery</button>
               </div>
-            );
-          })}
+            )}
+          </div>
+          {view === "gallery" ? (
+            <GalleryView data={posts} />
+          ) : (
+            <TableView data={posts} />
+          )}
         </div>
       </div>
     </div>
   );
 }
-
-const Card: React.FC<{ data: MatterProps }> = ({ data }) => {
-  const unitAbbrevation = data.unit ? data.unit.abbrevation : "unit unknown";
-  return (
-    <div
-      className=""
-      onClick={() => Router.push(`/data/${data.slug}`, `/data/${data.slug}`)}
-    >
-      <div className="font-bold">{data.name}</div>
-      <div>{data.measurement}</div>
-      <div>sds</div>
-    </div>
-  );
-};
