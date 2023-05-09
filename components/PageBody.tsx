@@ -19,7 +19,7 @@ export default function SearchAndData({ dataTable }) {
   //For DataViews
   const [view, setView] = useState("gallery");
   //For Pagination
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(48);
   const [currentPage, setCurrentPage] = useState(1);
   const [tableCount, setTableCount] = useState(0);
 
@@ -69,7 +69,7 @@ export default function SearchAndData({ dataTable }) {
           </button>
         </div>
 
-        <div className="hidden md:-mt-px md:flex">
+        {/* <div className="hidden md:-mt-px md:flex">
           {pageNumbers.map((pageNumber) => (
             <button
               key={pageNumber}
@@ -79,7 +79,7 @@ export default function SearchAndData({ dataTable }) {
               {pageNumber}
             </button>
           ))}
-        </div>
+        </div> */}
         <div className="-mt-px flex w-0 flex-1 justify-end">
           <button
             onClick={() => handlePageChange(currentPage + 1)}

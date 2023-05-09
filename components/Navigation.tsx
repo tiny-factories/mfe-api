@@ -7,7 +7,7 @@ export type SearchProps = {
 };
 
 const navigation = [
-  { name: "License", href: "/license" },
+  { name: "License", href: "/licenses" },
   { name: "Measurement", href: "/measurement" },
   { name: "Sensor", href: "/sensor" },
   { name: "Source", href: "/source" },
