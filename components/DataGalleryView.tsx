@@ -7,7 +7,10 @@ const GalleryView = ({ data }) => {
     <div className="grid grid-cols-12 gap-4">
       {data.map((d, i) => {
         return (
-          <div key={i} className="col-span-12 sm:col-span-6 md:col-span-4">
+          <div
+            key={i}
+            className="col-span-12 sm:col-span-6 lg:col-span-4 rounded border bg-green text-tan"
+          >
             <Card data={d} />
           </div>
         );

@@ -2,13 +2,12 @@
 import React from "react";
 
 const Table: React.FC<{ data: MatterProps }> = ({ data }) => {
-  console.log(data);
   return (
     <table className="table-auto">
       <thead>
         <tr>
-          <th> {!data.name ? <>Measurement</> : <> Name</>}</th>
-          <th>Abbreviation</th>
+          <th>{!data.name ? <>Measurement</> : <> Name</>}</th>
+          <th>{!data.abbreviation ? <>Unit</> : <> Abbreviation</>}</th>
           <th>Site</th>
         </tr>
       </thead>
@@ -17,7 +16,9 @@ const Table: React.FC<{ data: MatterProps }> = ({ data }) => {
           return (
             <tr key={i} className="">
               <td> {!d.name ? <>{d.measurement}</> : <> {d.name}</>}</td>
-              <td>{d.abbreviation}</td>
+              <td>
+                {!d.abbreviation ? <>{d.unitId}</> : <> {d.abbreviation}</>}
+              </td>
               <td>{d.site}</td>
             </tr>
           );

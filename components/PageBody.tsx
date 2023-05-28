@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-
 import {
   ArrowLongLeftIcon,
   ArrowLongRightIcon,
+  ListBulletIcon,
 } from "@heroicons/react/20/solid";
 
 import GalleryView from "./DataGalleryView";
@@ -45,8 +45,8 @@ export default function SearchAndData({ dataTable }) {
     ).then((res) => res.json());
     setResults(data.tableData);
     setTableCount(data.tableCount);
+    console.log(results);
 
-    console.log(data);
     setLoading(false);
   }
 
@@ -97,32 +97,72 @@ export default function SearchAndData({ dataTable }) {
   };
 
   return (
-    <div className="">
-      <div className="">explore</div>
-
-      <div className="">
-        Non eiusmod et minim ullamco laboris veniam. Culpa adipisicing eiusmod
-        magna sunt. Ipsum elit ad dolor et id magna pariatur enim proident culpa
-        cupidatat ut aliquip ut ea. Laborum eiusmod aute ullamco et non.
-        Occaecat incididunt sunt est cillum deserunt et. Adipisicing veniam
-        veniam est laborum laborum.
+    <div className="grid grid-cols-3 gap-4">
+      <div className="col-span-1">
+        <div className="min-h-screen border-4 border rounded"></div>
       </div>
-      <div>
-        <div>
-          <div>
-            <button onClick={toggleView}>Toggle View</button>
-            {view === "gallery" ? (
-              <div>
-                <button onClick={toggleView}>List</button>
-                <button onClick={toggleView}>Gallery</button>
+      {/* Search, Display, Sorting, Results */}
+      <div className="col-span-2">
+        <div className="">
+          {/* Search Bar */}
+          <div className="">
+            <div className="relative mt-2 flex items-center">
+              <input
+                type="text"
+                name="search"
+                id="search"
+                className="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+              <div className="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+                <kbd className="inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400">
+                  ⌘K
+                </kbd>
               </div>
-            ) : (
-              <div>
-                <button onClick={toggleView}>List</button>
-                <button onClick={toggleView}>Gallery</button>
-              </div>
-            )}
+            </div>
           </div>
+          <div className="flex">
+            {/* Results Display Options */}
+            <div className="flex-none">
+              <div className="grid-cols-2">
+                <button
+                  onClick={toggleView}
+                  className="border-2 rounded-tl rounded-bl"
+                >
+                  <ListBulletIcon className="h-6 w-6 text-blue-500" />
+                </button>
+                <button
+                  onClick={toggleView}
+                  className="border-2 rounded-tr rounded-br"
+                >
+                  <ListBulletIcon className="h-6 w-6 text-blue-500" />
+                </button>
+              </div>
+            </div>
+            {/* Results Sort Options */}
+            <div className="grow">
+              <div className="flex">
+                {" "}
+                <div className="grow"></div>
+                <div className="grid-cols-2">
+                  <button
+                    onClick={toggleView}
+                    className="border-2 rounded-tl rounded-bl"
+                  >
+                    <ListBulletIcon className="h-6 w-6 text-blue-500" />
+                  </button>
+                  <button
+                    onClick={toggleView}
+                    className="border-2 rounded-tr rounded-br"
+                  >
+                    <ListBulletIcon className="h-6 w-6 text-blue-500" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Results */}
+        <div className="">
           {view === "gallery" ? (
             <>
               {!search && (
@@ -142,6 +182,30 @@ export default function SearchAndData({ dataTable }) {
               )}
             </>
           )}
+        </div>
+      </div>
+
+      <div>
+        <div>
+          {/* <div>
+            <button onClick={toggleView}>Toggle View</button>
+            {view === "gallery" ? (
+              <div className="flex flex-wrap">
+                <button onClick={toggleView}>
+                  <ListBulletIcon className="h-6 w-6 text-blue-500" />
+                </button>
+                <button onClick={toggleView}>Gallery</button>
+              </div>
+            ) : (
+              <div className="flex flex-wrap">
+                <button onClick={toggleView}>
+                  {" "}
+                  <ListBulletIcon className="h-6 w-6 text-blue-500" />
+                </button>
+                <button onClick={toggleView}>Gallery</button>
+              </div>
+            )}
+          </div> */}
         </div>
       </div>
     </div>
