@@ -1,6 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../lib/prisma";
 
+type Data = {
+  results: string[];
+};
+
 // GET /api/test?searchString=:searchString
 export default async function handle(
   req: NextApiRequest,
