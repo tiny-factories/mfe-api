@@ -7,38 +7,39 @@ export type SearchProps = {
 };
 
 const navigation = [
-  { name: "Collections", href: "/collections" },
-  { name: "Sensors", href: "/sensors" },
+  { name: "Data", href: "/collections" },
+  { name: "Docs", href: "/docs" },
+  { name: "Account", href: "/account" },
 ];
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export default function Navigation() {
   return (
     <>
       <Head>
-        <title>Climate Glossary [a]</title>
+        <title>Data Made for Earth [alpha]</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="mx-auto py-3 px-3">
-        <div className="relative flex justify-between rounded-lg bg-[#ffffff]">
-          <div className="flex">
-            <div className="flex flex-shrink-0 items-center">
-              <Link href="/">
-                <div className="font-bold hover:underline hover:underline-offset-4 hover:decoration-2">
-                  {process.env.UMAMI != "DEVELOPMENT" ? (
-                    <>
-                      <span className="uppercase">[DEV] API</span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="uppercase">Earth &apos; s API</span>
-                    </>
-                  )}
-                </div>
-              </Link>
+      <div className="text-[24px] rounded-lg bg-white">
+        <div className="relative flex justify-between ">
+          <Link href="/">
+            <div className="px-8 flex flex-shrink-0 items-center font-bold hover:underline hover:underline-offset-4 hover:decoration-2 cursor-pointer">
+              {process.env.UMAMI != "DEVELOPMENT" ? (
+                <>
+                  <span className="uppercase text-[]">Data.</span>
+                </>
+              ) : (
+                <>
+                  <span className="uppercase">Data.</span>
+                </>
+              )}
             </div>
-          </div>
+          </Link>
           <div className="min-w-0 flex-1">
-            <div className="flex items-center px-3 py-2">
+            <div className="flex items-center py-2">
               <div className="w-full">
                 <label htmlFor="search" className="sr-only">
                   Search
@@ -50,7 +51,7 @@ export default function Navigation() {
                   <input
                     id="search"
                     name="search"
-                    className="block w-full rounded-md border-none focus:border-none bg-[#EEEDE6] text-sm placeholder-gray-500 "
+                    className="block w-full rounded-md border-none focus:border-none bg-grayLight text-sm placeholder-gray-500 "
                     placeholder="Search for terms, agencies, treaties, emissions … "
                     type="search"
                     onChange={(e) => setSearch(e.target.value)}
@@ -60,11 +61,11 @@ export default function Navigation() {
             </div>
           </div>
 
-          <div className="flex ">
+          <div className="flex pl-8">
             {navigation.map((item) => (
               <div key={item.name} className="flex flex-shrink-0 items-center">
                 <Link href={item.href}>
-                  <div className="pr-3 hover:underline hover:underline-offset-4 hover:decoration-2">
+                  <div className="cursor-pointer pr-8 hover:underline hover:underline-offset-4 hover:decoration-2">
                     {item.name}
                   </div>
                 </Link>
