@@ -10,7 +10,7 @@ import TableView from "./DataTableView";
 
 import useDebounce from "../hooks/useDebounce";
 
-export default function SearchAndData({ dataTable }) {
+export default function SearchAndData({ dataTable, filterAndSort }) {
   const tableToSearch = dataTable;
   //For Search
   const [loading, setLoading] = React.useState(true);
@@ -97,70 +97,91 @@ export default function SearchAndData({ dataTable }) {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4">
-      <div className="col-span-1">
-        <div className="min-h-screen border-4 border rounded"></div>
-      </div>
+    <div className="grid grid-cols-3 gap-4 ">
+      {filterAndSort && (
+        <div className="col-span-1">
+          <div className="min-h-screen border border rounded-lg"></div>
+        </div>
+      )}
+      {!filterAndSort && <></>}
+
       {/* Search, Display, Sorting, Results */}
-      <div className="col-span-2">
-        <div className="">
-          {/* Search Bar */}
+
+      <div className={filterAndSort ? "col-span-2" : "col-span-3"}>
+        {filterAndSort && (
           <div className="">
-            <div className="relative mt-2 flex items-center">
-              <input
-                type="text"
-                name="search"
-                id="search"
-                className="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-              <div className="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
-                <kbd className="inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400">
-                  ⌘K
-                </kbd>
+            {/* Search Bar */}
+            <div className="pb-4">
+              <div className="relative  flex items-center">
+                <input
+                  type="text"
+                  name="search"
+                  id="search"
+                  className="block w-full rounded-md  focus:border-none bg-grayLight text-sm placeholder-gray-500 "
+                />
+                <div className="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+                  <kbd className="inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400">
+                    ⌘K
+                  </kbd>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="flex">
-            {/* Results Display Options */}
-            <div className="flex-none">
-              <div className="grid-cols-2">
-                <button
-                  onClick={toggleView}
-                  className="border-2 rounded-tl rounded-bl"
-                >
-                  <ListBulletIcon className="h-6 w-6 text-blue-500" />
-                </button>
-                <button
-                  onClick={toggleView}
-                  className="border-2 rounded-tr rounded-br"
-                >
-                  <ListBulletIcon className="h-6 w-6 text-blue-500" />
-                </button>
-              </div>
-            </div>
-            {/* Results Sort Options */}
-            <div className="grow">
-              <div className="flex">
-                {" "}
-                <div className="grow"></div>
+            <div className="flex">
+              {/* Results Display Options */}
+              <div className="flex-none pb-4">
                 <div className="grid-cols-2">
                   <button
                     onClick={toggleView}
-                    className="border-2 rounded-tl rounded-bl"
+                    className="p-1 border-2 rounded-tl rounded-bl"
                   >
                     <ListBulletIcon className="h-6 w-6 text-blue-500" />
                   </button>
                   <button
                     onClick={toggleView}
-                    className="border-2 rounded-tr rounded-br"
+                    className="p-1 border-2 rounded-tr rounded-br"
                   >
                     <ListBulletIcon className="h-6 w-6 text-blue-500" />
                   </button>
                 </div>
               </div>
+              {/* Results Sort Options */}
+              <div className="grow">
+                <div className="flex">
+                  {" "}
+                  <div className="grow"></div>
+                  <div className="grid-cols-2">
+                    <button
+                      onClick={toggleView}
+                      className="ml-3 py-1 px-3 border-2 rounded"
+                    >
+                      Sort Option{" "}
+                    </button>
+                    <button
+                      onClick={toggleView}
+                      className="ml-3 py-1 px-3 border-2 rounded"
+                    >
+                      Sort Option{" "}
+                    </button>
+                    <button
+                      onClick={toggleView}
+                      className="ml-3 py-1 px-3 border-2 rounded"
+                    >
+                      Sort Option{" "}
+                    </button>
+                    <button
+                      onClick={toggleView}
+                      className="ml-3 py-1 px-3 border-2 rounded"
+                    >
+                      Sort Option{" "}
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        )}
+        {!filterAndSort && <></>}
+
         {/* Results */}
         <div className="">
           {view === "gallery" ? (
@@ -182,30 +203,6 @@ export default function SearchAndData({ dataTable }) {
               )}
             </>
           )}
-        </div>
-      </div>
-
-      <div>
-        <div>
-          {/* <div>
-            <button onClick={toggleView}>Toggle View</button>
-            {view === "gallery" ? (
-              <div className="flex flex-wrap">
-                <button onClick={toggleView}>
-                  <ListBulletIcon className="h-6 w-6 text-blue-500" />
-                </button>
-                <button onClick={toggleView}>Gallery</button>
-              </div>
-            ) : (
-              <div className="flex flex-wrap">
-                <button onClick={toggleView}>
-                  {" "}
-                  <ListBulletIcon className="h-6 w-6 text-blue-500" />
-                </button>
-                <button onClick={toggleView}>Gallery</button>
-              </div>
-            )}
-          </div> */}
         </div>
       </div>
     </div>
