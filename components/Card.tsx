@@ -24,6 +24,7 @@ const Card: React.FC<{ data: MatterProps }> = ({ data }) => {
     // console.log(JSON.stringify(unitData));
   }
 
+
   return (
     <div
       className="p-3 min-h-full bg-tan rounded text-green border-2 border-green hover:cursor-auto duration-150 hover:translate-x-1 hover:-translate-y-1 transform-gpu"
@@ -44,6 +45,7 @@ const Card: React.FC<{ data: MatterProps }> = ({ data }) => {
         ) : (
           <div>{data.description}</div>
         )}
+
         <div className="font-bold">Symboles</div>
       </div>
     </div>

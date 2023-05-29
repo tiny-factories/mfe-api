@@ -10,6 +10,7 @@ const navigation = [
   { name: "Data", href: "/collections" },
   { name: "Docs", href: "/docs" },
   { name: "Account", href: "/account" },
+
 ];
 
 function classNames(...classes: string[]) {
