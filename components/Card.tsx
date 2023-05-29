@@ -6,11 +6,8 @@ import Router, { useRouter } from "next/router";
 const Card: React.FC<{ data: MatterProps }> = ({ data }) => {
   const router = useRouter();
 
-  console.log(router);
-
   const searchUnitId = data.unitId;
   const [unitName, setUnitName] = useState<any | null>(data.unitId);
-  console.log(unitName);
 
   // const unitAbbrevation = data.unitId ? data.unitId : "unit unknown";
 
@@ -23,8 +20,8 @@ const Card: React.FC<{ data: MatterProps }> = ({ data }) => {
       (res) => res.json()
     );
     setUnitName(unitData.abbreviation);
-    console.log("fetching");
-    console.log(JSON.stringify(unitData));
+    // console.log("fetching");
+    // console.log(JSON.stringify(unitData));
   }
 
   return (
@@ -42,7 +39,11 @@ const Card: React.FC<{ data: MatterProps }> = ({ data }) => {
       </div>
 
       <div className="line-clamp-3">
-        {!data.description ? <div></div> : <div></div>}
+        {!data.description ? (
+          <div>No description Found</div>
+        ) : (
+          <div>{data.description}</div>
+        )}
         <div className="font-bold">Symboles</div>
       </div>
     </div>

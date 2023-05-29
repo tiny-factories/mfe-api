@@ -11,7 +11,7 @@ export default function Layout({ children }) {
         src="https://umami.tinyfactories.space/umami.js"
       ></script>
 
-      <div className="mx-auto p-6 h-fit min-h-screen bg-grayLight">
+      <div className="mx-autoh-fit min-h-screen bg-grayLight">
         <Navagation />
         <main>{children}</main>
         <Footer />

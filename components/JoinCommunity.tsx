@@ -48,21 +48,21 @@ const navigation = {
 
 export default function JoinCommunity() {
   return (
-    <div className="">
-      <div className="">Join our Communituy</div>
+    <div className="p-9 text-center">
+      <div className="text-h1 font-bold">Join our Communituy</div>
       <div className="">
         Minim eu dolore excepteur sit velit culpa labore Lorem laborum
         adipisicing irure minim officia adipisicing. Velit amet Lorem commodo
         duis enim Lorem laborum occaecat.
       </div>
       <div className="">
-        <div className=""></div>
-        <div className=""></div>
+        <div className="">Join Community</div>
+        <div className="">or follow along online</div>
         <div className="">
-          <div className=""></div>
-          <div className=""></div>
-          <div className=""></div>
-          <div className=""></div>
+          <div className="">1</div>
+          <div className="">2</div>
+          <div className="">3</div>
+          <div className="">4</div>
         </div>
       </div>
     </div>

@@ -23,7 +23,7 @@ export default function Navigation() {
         <title>Data Made for Earth [alpha]</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="text-[24px] rounded-lg bg-white">
+      <div className="m-9 text-h4 rounded-lg bg-white">
         <div className="relative flex justify-between ">
           <Link href="/">
             <div className="px-8 flex flex-shrink-0 items-center font-bold hover:underline hover:underline-offset-4 hover:decoration-2 cursor-pointer">
