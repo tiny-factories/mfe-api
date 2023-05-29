@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: [
-        "satoshi",
+        "inter",
         "ui-sans-serif",
         "system-ui",
         "-apple-system",
@@ -28,17 +28,19 @@ module.exports = {
       base: "1rem",
       lg: "48px",
       xl: "145px",
-      title: "10vw",
+      title: "48px",
       h1: "36px",
       h2: "32px",
       h3: "32px",
-      h4: "32px",
-      h5: "32px",
+      h4: "24px",
       p: "24px",
     },
     colors: {
       green: "#44694B",
       tan: "#F7F6F2",
+      grayLight: "#F5F5F5",
+      grayDark: "#EDEDED",
+      white: "#FEFEFE",
     },
     extend: {},
   },
@@ -46,5 +48,6 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/line-clamp"),
     require("@tailwindcss/forms"),
+    require("@tailwindcss/aspect-ratio"),
   ],
 };
